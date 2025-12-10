@@ -1,11 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerAimAndShoot : MonoBehaviour
+public class PlayerAim : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject bulletPrefab;
-    public float fireCooldown = 0.2f;
 
     private float fireTimer;
     private Camera cam;
@@ -23,16 +22,7 @@ public class PlayerAimAndShoot : MonoBehaviour
         mouseScreenPos = value.Get<Vector2>();
     }
 
-    public void OnShoot(InputValue value)
-    {
-        if (!value.isPressed) return;   // chỉ bắn khi nhấn
 
-        if (fireTimer <= 0f)
-        {
-            Shoot();
-            fireTimer = fireCooldown;
-        }
-    }
 
     void Update()
     {
@@ -49,10 +39,5 @@ public class PlayerAimAndShoot : MonoBehaviour
         firePoint.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         sprite.flipX = dir.x < 0;
-    }
-
-    void Shoot()
-    {
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 }

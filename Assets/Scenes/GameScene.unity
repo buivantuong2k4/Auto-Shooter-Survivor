@@ -300,16 +300,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 423038010}
-  - component: {fileID: 423038009}
   - component: {fileID: 423038008}
   - component: {fileID: 423038007}
   - component: {fileID: 423038013}
+  - component: {fileID: 423038009}
   - component: {fileID: 423038011}
   - component: {fileID: 423038012}
-  - component: {fileID: 423038014}
   - component: {fileID: 423038016}
-  - component: {fileID: 423038015}
+  - component: {fileID: 423038014}
   - component: {fileID: 423038017}
+  - component: {fileID: 423038018}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -430,6 +430,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1157268576}
+  - {fileID: 652183072}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &423038011
@@ -446,7 +447,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAimAndShoot
   firePoint: {fileID: 1157268576}
   bulletPrefab: {fileID: 4467724607996236159, guid: 02b224fbe01091d4da879cbe5a54766a, type: 3}
-  fireCooldown: 0.2
 --- !u!114 &423038012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,8 +459,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16047a0f855e7ed408630f8ee94d6881, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  maxHP: 100
-  currentHP: 0
 --- !u!61 &423038013
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -522,22 +520,6 @@ MonoBehaviour:
   level: 1
   currentXP: 0
   xpToNextLevel: 20
---- !u!114 &423038015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 423038006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5550828c389b61748bfc1573d14882c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FireBurstWeapon
-  isUnlocked: 0
-  cooldown: 5
-  radius: 2.5
-  baseDamage: 20
 --- !u!114 &423038016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,7 +532,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8992f05c54c12443b37e5896e68006c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  mainWeaponDamageMultiplier: 1
+  baseMaxHP: 100
+  hpPerLevel: 20
+  healthLevel: 0
+  baseMoveSpeed: 5
+  moveSpeedPerLevel: 0.5
+  speedLevel: 0
+  damageLevel: 0
+  fireRateLevel: 0
+  projectileLevel: 2
 --- !u!114 &423038017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,10 +567,36 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: 
+  m_DefaultControlScheme: Keyboard&Mouse
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &423038018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423038006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa33e8f27ffd46c448ae4bfc203ea1ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletWeapon
+  playerStats: {fileID: 423038016}
+  firePoint: {fileID: 1157268576}
+  bulletPrefab: {fileID: 4467724607996236159, guid: 02b224fbe01091d4da879cbe5a54766a, type: 3}
+  baseDamage: 30
+  baseProjectile: 0
+  baseFireRate: 1
+  damagePerWeaponLevel: 5
+  projectilePerWeaponLevel: 0.5
+  fireRatePerWeaponLevel: 0.2
+  damagePerGlobalLevel: 2
+  projectilePerGlobalLevel: 0.25
+  fireRatePerGlobalLevel: 0.1
+  unlocked: 1
+  weaponLevel: 0
 --- !u!1 &424384526
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,6 +1033,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &652183071
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 652183072}
+  m_Layer: 0
+  m_Name: Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &652183072
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652183071}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 423038010}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &684253023
 GameObject:
