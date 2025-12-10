@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerAimAndShoot : MonoBehaviour
 {
@@ -6,57 +7,52 @@ public class PlayerAimAndShoot : MonoBehaviour
     public GameObject bulletPrefab;
     public float fireCooldown = 0.2f;
 
-    private float fireTimer = 0f;
+    private float fireTimer;
     private Camera cam;
+    private Vector2 mouseScreenPos;
+    private SpriteRenderer sprite;
 
     void Start()
     {
         cam = Camera.main;
+        sprite = GetComponent<SpriteRenderer>();
     }
 
-    void Update()
+    public void OnLook(InputValue value)
     {
-        AimTowardsMouse();
-        HandleShooting();
+        mouseScreenPos = value.Get<Vector2>();
     }
 
-    void AimTowardsMouse()
+    public void OnShoot(InputValue value)
     {
-        if (cam == null) return;
+        if (!value.isPressed) return;   // chỉ bắn khi nhấn
 
-        Vector3 mouseScreenPos = Input.mousePosition;
-        Vector3 mouseWorldPos = cam.ScreenToWorldPoint(mouseScreenPos);
-        Vector2 dir = mouseWorldPos - transform.position;
-
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-    }
-
-    void HandleShooting()
-    {
-        fireTimer -= Time.deltaTime;
-
-        if (Input.GetButton("Fire1") && fireTimer <= 0f) // Fire1 = chuột trái
+        if (fireTimer <= 0f)
         {
             Shoot();
             fireTimer = fireCooldown;
         }
     }
 
-    void Shoot()
+    void Update()
     {
-        if (bulletPrefab == null || firePoint == null) return;
-
-        GameObject bulletObj = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-
-        // lấy PlayerStats để tăng damage
-        PlayerStats stats = GetComponent<PlayerStats>();
-        Bullet bullet = bulletObj.GetComponent<Bullet>();
-
-        if (stats != null && bullet != null)
-        {
-            bullet.damage = Mathf.RoundToInt(bullet.damage * stats.mainWeaponDamageMultiplier);
-        }
+        fireTimer -= Time.deltaTime;
+        Aim();
     }
 
+    void Aim()
+    {
+        Vector3 mouseWorld = cam.ScreenToWorldPoint(mouseScreenPos);
+        Vector2 dir = mouseWorld - transform.position;
+
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        firePoint.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        sprite.flipX = dir.x < 0;
+    }
+
+    void Shoot()
+    {
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+    }
 }
