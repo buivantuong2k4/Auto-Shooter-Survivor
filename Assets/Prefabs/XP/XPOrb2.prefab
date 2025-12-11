@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2336222595007018895}
   - component: {fileID: 3902626250049088751}
   - component: {fileID: -6937768233631874766}
+  - component: {fileID: -3723318647846507981}
   m_Layer: 0
   m_Name: XPOrb2
   m_TagString: Untagged
@@ -156,3 +157,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-3723318647846507981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7162209361196343287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5aa09e8244c6ae41836e6ed6059d0e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::XPOrb
+  xpValue: 20

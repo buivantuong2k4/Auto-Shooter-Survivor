@@ -79,12 +79,14 @@ public class Danger : MonoBehaviour
     public void UnlockWeapon()
     {
         unlocked = true;
-        weaponLevel = 0;
     }
 
     public void UpgradeWeapon()
     {
-        weaponLevel++;
+        // Tăng tối đa tới cấp 5
+        if (weaponLevel < 5)
+            weaponLevel++;
+        UnlockWeapon();
     }
 
     // ====== TÍNH CHỈ SỐ HIỆN TẠI ======
