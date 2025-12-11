@@ -33,4 +33,12 @@ public class PlayerAnimationController : MonoBehaviour
     {
         anim.SetTrigger(DieHash);
     }
+    public void SetMoveDirection(Vector2 dir)
+    {
+        if (dir != Vector2.zero)
+        {
+            anim.SetFloat("MoveX", dir.x);
+            anim.SetFloat("MoveY", dir.y);
+        }
+    }
 }

@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 6061354989879535939}
   m_Layer: 0
   m_Name: Enemy_Mushroom
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

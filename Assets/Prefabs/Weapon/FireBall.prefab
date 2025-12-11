@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5211292623852618236}
   - component: {fileID: 3752635403265360304}
   - component: {fileID: 7413227901501460137}
+  - component: {fileID: -4375853075970134236}
   m_Layer: 0
   m_Name: FireBall
   m_TagString: Untagged
@@ -172,3 +173,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FireBall
   speed: 8
   lifeTime: 2
+--- !u!95 &-4375853075970134236
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2944516281596723662}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2394e40b6e186e34ebbdc2d9292a12dd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
