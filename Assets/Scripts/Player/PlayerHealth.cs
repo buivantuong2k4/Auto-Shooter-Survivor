@@ -4,6 +4,13 @@ public class PlayerHealth : MonoBehaviour
 {
     public int maxHP = 100;
     public int currentHP;
+    private PlayerAnimationController animController;
+
+    void Awake()
+    {
+
+        animController = GetComponent<PlayerAnimationController>();
+    }
 
     void Start()
     {
@@ -23,9 +30,10 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
+        animController.PlayDeath();
         Debug.Log("PLAYER DEAD - GAME OVER");
         // sau này sẽ gọi GameManager.GameOver()
         // tạm thời chỉ log
-        Time.timeScale = 0f;
+        // Time.timeScale = 0f;
     }
 }
