@@ -140,8 +140,17 @@ public class LevelUpManager : MonoBehaviour
     {
         List<UpgradeData> result = new List<UpgradeData>();
 
+        // Kiểm tra allUpgrades có dữ liệu không
+        if (allUpgrades == null || allUpgrades.Count == 0)
+        {
+            Debug.LogWarning("LevelUpManager: allUpgrades is null or empty! Assign UpgradeData in Inspector!");
+            return result;
+        }
+
         foreach (var u in allUpgrades)
         {
+            if (u == null) continue;  // Skip null entries
+
             int currentLvl = GetCurrentLevel(u.type);
             if (currentLvl < u.maxLevel)
                 result.Add(u);

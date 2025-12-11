@@ -65,7 +65,7 @@ public class MainMenuController : MonoBehaviour
         PlayerPrefs.Save();
 
         Debug.Log("Đã chọn nhân vật số: " + index);
-        
+
         // Vào game luôn
         SceneManager.LoadScene(gameSceneName);
     }

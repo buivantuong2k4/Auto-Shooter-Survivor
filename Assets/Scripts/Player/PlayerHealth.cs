@@ -7,6 +7,10 @@ public class PlayerHealth : MonoBehaviour
     private float currentHP;
     private float maxHP;
 
+    private float healTimer = 0f;
+    private const float HEAL_INTERVAL = 1f;  // Hồi phục mỗi 1 giây
+    private const float HEAL_PERCENTAGE = 0.01f;  // 1% maxHP
+
     void Start()
     {
         stats = GetComponent<PlayerStats>();
@@ -21,6 +25,17 @@ public class PlayerHealth : MonoBehaviour
         currentHP = maxHP;
     }
 
+    void Update()
+    {
+        // Tự động hồi HP 1% mỗi 1 giây
+        healTimer += Time.deltaTime;
+        if (healTimer >= HEAL_INTERVAL)
+        {
+            healTimer = 0f;
+            Heal(maxHP * HEAL_PERCENTAGE);
+        }
+    }
+
     public void TakeDamage(float dmg)
     {
         currentHP -= dmg;
@@ -30,6 +45,12 @@ public class PlayerHealth : MonoBehaviour
         {
             Die();
         }
+    }
+
+    // Hồi phục HP
+    private void Heal(float amount)
+    {
+        currentHP = Mathf.Min(currentHP + amount, maxHP);
     }
 
     // Khi bạn tăng cấp HealthLevel → gọi hàm này để cập nhật max HP
@@ -47,9 +68,14 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-
         Debug.Log("PLAYER DEAD - GAME OVER");
-        Time.timeScale = 1f;
+
+        // Tìm EndMenu và gọi Show để hiển thị end menu
+        EndMenu endMenu = FindFirstObjectByType<EndMenu>();
+        if (endMenu != null)
+        {
+            endMenu.Show();
+        }
     }
 
     public float GetCurrentHP() => currentHP;

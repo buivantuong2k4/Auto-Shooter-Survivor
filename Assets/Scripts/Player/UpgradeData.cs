@@ -18,7 +18,8 @@ public enum UpgradeType
 }
 
 [System.Serializable]
-public class UpgradeData
+[CreateAssetMenu(fileName = "New UpgradeData", menuName = "UpgradeData")]
+public class UpgradeData : ScriptableObject
 {
     public string displayName;      // Tên hiển thị trên UI
     [TextArea] public string description;
