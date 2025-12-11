@@ -39,6 +39,8 @@ public class PlayerSpawner : MonoBehaviour
         Quaternion rot = Quaternion.identity;
 
         currentPlayer = Instantiate(playerPrefabs[index], pos, rot);
+        LevelUpManager.Instance.RegisterPlayer(currentPlayer);
+
 
         // 🔥 GÁN TARGET CHO CINEMACHINE
         if (cineCamera != null && currentPlayer != null)
