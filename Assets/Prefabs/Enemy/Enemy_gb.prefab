@@ -31,8 +31,8 @@ Transform:
   m_GameObject: {fileID: 3307120163879111234}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.45, y: 1.45, z: 1}
+  m_LocalPosition: {x: 0.07027, y: -0.0339, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5231633907668336648}
@@ -162,7 +162,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.7, y: 0.76}
+    oldSize: {x: 1.1666666, y: 1.2666667}
     newSize: {x: 1.024, y: 1.024}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -182,8 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6071ac898bf6af446a86b01ae3c0ffc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  moveSpeed: 4
-  maxHP: 10
+  moveSpeed: 2
+  maxHP: 20
   attackDamage: 10
   attackCooldown: 2
   xpOrbPrefab: {fileID: 7162209361196343287, guid: 1ed1c5df2b7d0c847835e51b97fff913, type: 3}
