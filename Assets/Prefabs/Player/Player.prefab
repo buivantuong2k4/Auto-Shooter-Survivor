@@ -318,8 +318,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLevel
   level: 1
-  currentXP: 0
-  xpToNextLevel: 20
+  currentXP: 9
+  xpToNextLevel: 10
 --- !u!114 &1382928531321252743
 MonoBehaviour:
   m_ObjectHideFlags: 0
