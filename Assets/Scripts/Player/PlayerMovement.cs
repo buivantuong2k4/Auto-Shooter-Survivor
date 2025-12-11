@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public float moveSpeed = 5f;      // dùng làm fallback nếu không có PlayerStats
+    public PlayerStats playerStats;   // kéo PlayerStats vào, hoặc để trống cho Auto-find
 
     private Rigidbody2D rb;
     private Vector2 moveInput;
@@ -12,22 +14,29 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        animController = GetComponent<PlayerAnimationController>();
+
+        // nếu chưa gán trong Inspector thì tự tìm trên cùng GameObject
+        if (playerStats == null)
+        {
+            playerStats = GetComponent<PlayerStats>();
+        }
     }
 
-    void Update()
+    public void OnMove(InputValue value)
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
-
-        moveInput = new Vector2(x, y).normalized;
-
-        bool isRunning = moveInput.sqrMagnitude > 0.01f;
-        animController.SetRunning(isRunning);
+        moveInput = value.Get<Vector2>();
     }
 
     void FixedUpdate()
     {
-        rb.linearVelocity = moveInput * moveSpeed;
+        float currentSpeed = moveSpeed;
+
+        // nếu có PlayerStats thì dùng speed từ đó
+        if (playerStats != null)
+        {
+            currentSpeed = playerStats.GetMoveSpeed();
+        }
+
+        rb.linearVelocity = moveInput * currentSpeed;
     }
 }

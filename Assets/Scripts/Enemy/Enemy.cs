@@ -15,6 +15,10 @@ public class Enemy : MonoBehaviour
     public GameObject xpOrbPrefab;
     public float deathDestroyDelay = 0.8f; // thời gian chờ sau khi chơi anim chết
 
+    [Header("XP Drop Settings")]
+    [Range(0f, 1f)]
+    public float dropRate = 1f;   // tỉ lệ rơi xp
+
     private int currentHP;
     private Transform player;
     private PlayerHealth targetPlayerHealth;   // player đang trong vùng attack
@@ -72,6 +76,7 @@ public class Enemy : MonoBehaviour
     {
         if (player == null) return;
 
+        // hướng di chuyển
         Vector2 dir = (player.position - transform.position).normalized;
         float distance = Vector2.Distance(transform.position, player.position);
 
@@ -106,14 +111,13 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
+        Debug.Log("Hit enemy, dmg = " + dmg);
         if (isDead) return;
 
         currentHP -= dmg;
 
         if (currentHP <= 0)
-        {
             Die();
-        }
     }
 
     void Die()
@@ -138,11 +142,10 @@ public class Enemy : MonoBehaviour
         if (xpOrbPrefab != null)
         {
             Instantiate(xpOrbPrefab, transform.position, Quaternion.identity);
-        }
 
-        // xoá enemy sau khi anim chết chạy gần xong
-        Destroy(gameObject, deathDestroyDelay);
-    }
+            // xoá enemy sau khi anim chết chạy gần xong
+            Destroy(gameObject, deathDestroyDelay);
+        }
 
     // Hàm này được gọi từ EnemyAttackRange (child)
     public void SetPlayerInRange(PlayerHealth playerHealth)

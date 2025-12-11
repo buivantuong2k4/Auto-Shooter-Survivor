@@ -30,7 +30,7 @@ public class LevelUpUI : MonoBehaviour
         }
 
         // gán sự kiện click
-        btnMainUpgrade.onClick.AddListener(OnMainUpgradeClicked);
+
         btnUnlockFireBurst.onClick.AddListener(OnUnlockFireBurstClicked);
     }
 
@@ -46,14 +46,7 @@ public class LevelUpUI : MonoBehaviour
         Time.timeScale = 1f; // resume
     }
 
-    void OnMainUpgradeClicked()
-    {
-        if (playerStats != null)
-        {
-            playerStats.mainWeaponDamageMultiplier += 0.2f; // +20% damage
-        }
-        Hide();
-    }
+
 
     void OnUnlockFireBurstClicked()
     {
