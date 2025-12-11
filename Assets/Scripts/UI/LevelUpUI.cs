@@ -27,6 +27,14 @@ public class LevelUpUI : MonoBehaviour
 
     void Start()
     {
+        // --- DÒNG CẤP CỨU QUAN TRỌNG ---
+        Time.timeScale = 1f; // Bắt buộc game phải chạy ở tốc độ bình thường
+        // --------------------------------
+
+        if (panel != null)
+            panel.SetActive(false);
+
+        // ... (Code cũ tìm Player giữ nguyên) ...
         panel.SetActive(false);
 
         // Tự động tìm Player và lấy script PlayerStats
