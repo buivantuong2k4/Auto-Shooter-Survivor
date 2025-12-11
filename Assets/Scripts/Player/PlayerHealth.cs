@@ -47,7 +47,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-        animController.PlayDeath();
+
         Debug.Log("PLAYER DEAD - GAME OVER");
         Time.timeScale = 0f;
     }

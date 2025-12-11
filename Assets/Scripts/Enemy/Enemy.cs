@@ -146,6 +146,7 @@ public class Enemy : MonoBehaviour
             // xoá enemy sau khi anim chết chạy gần xong
             Destroy(gameObject, deathDestroyDelay);
         }
+    }
 
     // Hàm này được gọi từ EnemyAttackRange (child)
     public void SetPlayerInRange(PlayerHealth playerHealth)
