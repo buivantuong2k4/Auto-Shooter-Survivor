@@ -345,7 +345,7 @@ MonoBehaviour:
   level3_FireRateBonus: 0.5
   level4_ProjectileBonus: 1
   level5_DamageBonus: 10
-  unlocked: 1
+  unlocked: 0
   weaponLevel: 0
 --- !u!114 &3649696551857543459
 MonoBehaviour:
