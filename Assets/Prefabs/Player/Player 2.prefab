@@ -20,6 +20,9 @@ GameObject:
   - component: {fileID: 1288732124423169333}
   - component: {fileID: 2200994539507705035}
   - component: {fileID: 933206049589533852}
+  - component: {fileID: 3353347561271081369}
+  - component: {fileID: 3649696551857543459}
+  - component: {fileID: 8541581347220193050}
   m_Layer: 0
   m_Name: Player 2
   m_TagString: Player
@@ -245,6 +248,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAimAndShoot
   firePoint: {fileID: 4764966402603326400}
   bulletPrefab: {fileID: 424718391998324799, guid: 03737efa46440f04486df10547435111, type: 3}
+  shootFlipDuration: 0.1
+  isShootingFlip: 0
 --- !u!114 &1927635611673191190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,6 +320,87 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3353347561271081369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6573146675933129569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb6c56441583a24dab115e0599920d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FireBallWeapon
+  playerStats: {fileID: 0}
+  firePoint: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  baseDamage: 5
+  baseProjectile: 1
+  baseFireRate: 1
+  damagePerGlobalLevel: 2
+  projectilePerGlobalLevel: 0.25
+  fireRatePerGlobalLevel: 0.1
+  level2_DamageBonus: 5
+  level3_FireRateBonus: 0.5
+  level4_ProjectileBonus: 1
+  level5_DamageBonus: 10
+  unlocked: 0
+  weaponLevel: 0
+--- !u!114 &3649696551857543459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6573146675933129569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2bf531fab58b834bb3e8dfdc7f4ab20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BowWeapon
+  playerStats: {fileID: 0}
+  firePoint: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  baseDamage: 5
+  baseProjectile: 1
+  baseFireRate: 1
+  damagePerGlobalLevel: 2
+  projectilePerGlobalLevel: 0.25
+  fireRatePerGlobalLevel: 0.1
+  level2_DamageBonus: 5
+  level3_FireRateBonus: 0.5
+  level4_ProjectileBonus: 1
+  level5_DamageBonus: 10
+  unlocked: 0
+  weaponLevel: 0
+--- !u!114 &8541581347220193050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6573146675933129569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a024c730a17bf8c4b9f4f9bea9436093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwordWeapon
+  playerStats: {fileID: 0}
+  firePoint: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  baseDamage: 5
+  baseProjectile: 1
+  baseFireRate: 1
+  damagePerGlobalLevel: 2
+  projectilePerGlobalLevel: 0.25
+  fireRatePerGlobalLevel: 0.1
+  level2_DamageBonus: 5
+  level3_FireRateBonus: 0.5
+  level4_ProjectileBonus: 1
+  level5_DamageBonus: 10
+  unlocked: 0
+  weaponLevel: 0
 --- !u!1 &8277521097515083823
 GameObject:
   m_ObjectHideFlags: 0

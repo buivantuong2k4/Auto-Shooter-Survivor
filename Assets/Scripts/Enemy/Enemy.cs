@@ -1,5 +1,4 @@
 using System.Collections;
-
 using UnityEngine;
 
 [RequireComponent(typeof(EnemyAnimationController))]
@@ -19,7 +18,7 @@ public class Enemy : MonoBehaviour
 
     [Header("XP Drop Settings")]
     [Range(0f, 1f)]
-    public float dropRate = 1f;   // tỉ lệ rơi xp
+    public float dropRate = 1f;   // tỉ lệ rơi xp (1 = 100%)
 
     private int currentHP;
     private Transform player;
@@ -40,25 +39,26 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         currentHP = maxHP;
-
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null)
-            player = playerObj.transform;
+        TryFindPlayer();
     }
 
     void Update()
     {
         if (isDead) return;
 
-        attackTimer -= Time.deltaTime;
-
-        // không có player thì đứng yên
+        // nếu player chưa có (vì spawn trễ) thì thử tìm lại
         if (player == null)
         {
-            rb.linearVelocity = Vector2.zero;
-            animController.SetRunning(false);
-            return;
+            TryFindPlayer();
+            if (player == null)
+            {
+                rb.linearVelocity = Vector2.zero;
+                animController.SetRunning(false);
+                return;
+            }
         }
+
+        attackTimer -= Time.deltaTime;
 
         // nếu player đang trong vùng attack -> ưu tiên đánh
         if (targetPlayerHealth != null)
@@ -74,15 +74,20 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    void TryFindPlayer()
+    {
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+            player = playerObj.transform;
+    }
+
     void MoveTowardPlayer()
     {
         if (player == null) return;
 
-        // hướng di chuyển
         Vector2 dir = (player.position - transform.position).normalized;
         float distance = Vector2.Distance(transform.position, player.position);
 
-        // nếu còn xa thì chạy tới, nếu đủ gần thì giảm tốc cho đỡ giật
         if (distance > 0.5f)
         {
             rb.linearVelocity = dir * moveSpeed;
@@ -94,7 +99,7 @@ public class Enemy : MonoBehaviour
             animController.SetRunning(false);
         }
 
-        // flip hướng nhìn (nếu là game side-view)
+        // flip trái/phải (nếu là side-view)
         if (dir.x < 0)
             transform.localScale = new Vector3(-1, 1, 1);
         else if (dir.x > 0)
@@ -106,6 +111,8 @@ public class Enemy : MonoBehaviour
         if (attackTimer > 0f || targetPlayerHealth == null) return;
 
         animController.PlayAttack();
+
+        // nếu sau này bạn muốn damage trúng đúng frame → chuyển sang dùng Animation Event
         targetPlayerHealth.TakeDamage(attackDamage);
 
         attackTimer = attackCooldown;
@@ -113,7 +120,6 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
-        Debug.Log("Hit enemy, dmg = " + dmg);
         if (isDead) return;
 
         currentHP -= dmg;
@@ -140,24 +146,23 @@ public class Enemy : MonoBehaviour
             col.enabled = false;
         }
 
-        // chạy quy trình death (delay → spawn orb → destroy)
+        // chạy quy trình death (delay → drop → destroy)
         StartCoroutine(DeathRoutine());
     }
 
     IEnumerator DeathRoutine()
     {
-        // 🔥 chờ animation chạy được 0.03s
-        yield return new WaitForSeconds(1f);
-        Destroy(gameObject);
-        // 🔵 spawn XP orb sau delay
-        if (xpOrbPrefab != null)
+        // ⏱ chờ đúng thời gian deathDestroyDelay (ví dụ 0.8s)
+        yield return new WaitForSeconds(deathDestroyDelay);
+
+        // 🎁 drop orb theo tỉ lệ dropRate
+        if (xpOrbPrefab != null && Random.value <= dropRate)
         {
             Instantiate(xpOrbPrefab, transform.position, Quaternion.identity);
         }
 
-
-
-
+        // xoá enemy sau khi anim chết chạy xong + drop xong
+        Destroy(gameObject);
     }
 
     // Hàm này được gọi từ EnemyAttackRange (child)

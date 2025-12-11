@@ -4,37 +4,37 @@ public class EnemySpawner : MonoBehaviour
 {
     [Header("Common")]
     public float spawnRadius = 8f;
-    public Transform player;
+    public Transform player;   // sẽ tự tìm object có tag "Player"
 
     [Header("Normal Enemies")]
-    public GameObject[] easyEnemies;   // quái dễ (0-4 phút)
-    public GameObject[] normalEnemies; // quái thường (4-8 phút)
-    public GameObject[] hardEnemies;   // quái khó (8-10 phút)
+    public GameObject[] easyEnemies;
+    public GameObject[] normalEnemies;
+    public GameObject[] hardEnemies;
 
     public int maxEasyEnemies = 25;
     public int maxNormalEnemies = 80;
     public int maxHardEnemies = 100;
 
     [Header("Elite Enemies")]
-    public GameObject eliteType1;      // tinh anh dạng 1 (từ phút 4)
-    public GameObject eliteType2;      // tinh anh dạng 2 (từ phút 8)
+    public GameObject eliteType1;
+    public GameObject eliteType2;
     public int maxEliteCount = 4;
 
-    public float elite1StartTime = 4f * 60f;  // 4 phút
-    public float elite2StartTime = 8f * 60f;  // 8 phút
+    public float elite1StartTime = 4f * 60f;
+    public float elite2StartTime = 8f * 60f;
 
     public Vector2 elite1SpawnIntervalRange = new Vector2(18f, 22f);
     public Vector2 elite2SpawnIntervalRange = new Vector2(25f, 30f);
 
     [Header("Boss")]
-    public GameObject boss1Prefab;     // boss phút 5
-    public GameObject boss2Prefab;     // boss phút 10
+    public GameObject boss1Prefab;
+    public GameObject boss2Prefab;
 
-    public float boss1Time = 5f * 60f; // 5 phút
-    public float boss2Time = 10f * 60f; // 10 phút
+    public float boss1Time = 5f * 60f;
+    public float boss2Time = 10f * 60f;
 
     // --- Runtime state ---
-    private float gameTime = 0f;              // thời gian logic (dừng khi boss xuất hiện)
+    private float gameTime = 0f;
     private bool isBossActive = false;
     private bool boss1Spawned = false;
     private bool boss2Spawned = false;
@@ -47,33 +47,27 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        if (player == null)
-        {
-            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-            if (playerObj != null)
-                player = playerObj.transform;
-        }
-
-        // bắt đầu với quái dễ, spawn chậm
+        TryFindPlayer();              // 🔥 thử tìm player lúc bắt đầu
         currentNormalSpawnInterval = 1.2f;
         ResetEliteInterval();
     }
 
     void Update()
     {
-        if (player == null) return;
+        // Nếu player chưa có (VD: spawn chậm hơn EnemySpawner) thì thử tìm lại
+        if (player == null)
+        {
+            TryFindPlayer();
+            if (player == null) return;   // vẫn chưa có player → chưa spawn gì
+        }
 
-        // Nếu boss đang sống: không tăng gameTime và không spawn quái nhỏ
         if (isBossActive)
             return;
 
-        // Tăng thời gian logic
         gameTime += Time.deltaTime;
 
-        // Cập nhật spawn interval theo gameTime
         UpdateNormalSpawnInterval();
 
-        // Spawn quái thường
         normalSpawnTimer += Time.deltaTime;
         if (normalSpawnTimer >= currentNormalSpawnInterval)
         {
@@ -81,7 +75,6 @@ public class EnemySpawner : MonoBehaviour
             normalSpawnTimer = 0f;
         }
 
-        // Spawn quái tinh anh (từ 4 phút trở đi)
         eliteSpawnTimer += Time.deltaTime;
         if (eliteSpawnTimer >= currentEliteSpawnInterval)
         {
@@ -89,58 +82,55 @@ public class EnemySpawner : MonoBehaviour
             ResetEliteInterval();
         }
 
-        // Kiểm tra spawn boss
         CheckBossSpawn();
     }
 
-    // -------------------------
-    // NORMAL ENEMIES
-    // -------------------------
+    // 👇 HÀM MỚI: tự tìm player theo tag
+    void TryFindPlayer()
+    {
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            player = playerObj.transform;
+            // Debug.Log("EnemySpawner: Found player = " + player.name);
+        }
+    }
+
+    // ----- phần dưới giữ nguyên code của bạn -----
     void UpdateNormalSpawnInterval()
     {
-        // gameTime tính theo giây
-        // 0–120s: 1.2s / con (rất dễ)
-        // 120–240s: 0.9s / con
-        // 240–300s: 0.7s / con
-        // 300–390s: 0.6s / con
-        // 390–480s: 0.45s / con
-        // 480–540s: 0.35s / con
-        // 540–600s: 0.25s / con
-
-        if (gameTime < 120f) // 0–2p
+        if (gameTime < 120f)
             currentNormalSpawnInterval = 1.2f;
-        else if (gameTime < 240f) // 2–4p
+        else if (gameTime < 240f)
             currentNormalSpawnInterval = 0.9f;
-        else if (gameTime < 300f) // 4–5p
+        else if (gameTime < 300f)
             currentNormalSpawnInterval = 0.7f;
-        else if (gameTime < 390f) // 5–6.5p
+        else if (gameTime < 390f)
             currentNormalSpawnInterval = 0.6f;
-        else if (gameTime < 480f) // 6.5–8p
+        else if (gameTime < 480f)
             currentNormalSpawnInterval = 0.45f;
-        else if (gameTime < 540f) // 8–9p
+        else if (gameTime < 540f)
             currentNormalSpawnInterval = 0.35f;
-        else // 9–10p
+        else
             currentNormalSpawnInterval = 0.25f;
     }
 
     void TrySpawnNormalEnemy()
     {
-        int totalNormal = CountByTag("Enemy"); // quái thường dùng tag "Enemy"
+        int totalNormal = CountByTag("Enemy");
 
-        // Chọn loại quái theo thời gian
         GameObject prefabToSpawn = null;
 
-        if (gameTime < 240f) // 0–4 phút: chỉ quái dễ
+        if (gameTime < 240f)
         {
             if (totalNormal >= maxEasyEnemies) return;
             prefabToSpawn = GetRandomFromArray(easyEnemies);
         }
-        else if (gameTime < 480f) // 4–8 phút: quái thường
+        else if (gameTime < 480f)
         {
             if (totalNormal >= maxNormalEnemies) return;
 
-            // có thể cho xen kẽ 1 ít quái dễ
-            if (gameTime < 300f) // 4–5p: chuyển dần
+            if (gameTime < 300f)
             {
                 float r = Random.value;
                 if (r < 0.6f)
@@ -153,12 +143,11 @@ public class EnemySpawner : MonoBehaviour
                 prefabToSpawn = GetRandomFromArray(normalEnemies);
             }
         }
-        else // 8–10 phút: quái khó
+        else
         {
             if (totalNormal >= maxHardEnemies) return;
 
             float r = Random.value;
-            // 70% khó, 30% thường
             if (r < 0.7f)
                 prefabToSpawn = GetRandomFromArray(hardEnemies);
             else
@@ -173,36 +162,29 @@ public class EnemySpawner : MonoBehaviour
         Instantiate(prefabToSpawn, spawnPos, Quaternion.identity);
     }
 
-    // -------------------------
-    // ELITE ENEMIES
-    // -------------------------
     void ResetEliteInterval()
     {
         eliteSpawnTimer = 0f;
 
-        // trước phút 4: không spawn tinh anh
         if (gameTime < elite1StartTime)
         {
             currentEliteSpawnInterval = 999f;
             return;
         }
 
-        // từ phút 8 trở đi: có cả 2 dạng
         if (gameTime >= elite2StartTime)
         {
-            // tinh anh dồi dào hơn tí
             currentEliteSpawnInterval = Random.Range(15f, 25f);
         }
         else
         {
-            // chỉ dạng 1
             currentEliteSpawnInterval = Random.Range(elite1SpawnIntervalRange.x, elite1SpawnIntervalRange.y);
         }
     }
 
     void TrySpawnEliteEnemy()
     {
-        if (gameTime < elite1StartTime) return; // chưa đến 4p
+        if (gameTime < elite1StartTime) return;
 
         int eliteCount = CountByTag("Elite");
         if (eliteCount >= maxEliteCount) return;
@@ -211,7 +193,6 @@ public class EnemySpawner : MonoBehaviour
 
         if (gameTime >= elite2StartTime && eliteType2 != null)
         {
-            // từ phút 8 trở đi: random dạng 1 hoặc 2
             float r = Random.value;
             if (r < 0.6f && eliteType1 != null)
                 eliteToSpawn = eliteType1;
@@ -220,7 +201,6 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            // chỉ dạng 1
             eliteToSpawn = eliteType1;
         }
 
@@ -232,12 +212,8 @@ public class EnemySpawner : MonoBehaviour
         Instantiate(eliteToSpawn, spawnPos, Quaternion.identity);
     }
 
-    // -------------------------
-    // BOSS
-    // -------------------------
     void CheckBossSpawn()
     {
-        // Boss 1 ở 5 phút
         if (!boss1Spawned && gameTime >= boss1Time && boss1Prefab != null)
         {
             SpawnBoss(boss1Prefab);
@@ -245,7 +221,6 @@ public class EnemySpawner : MonoBehaviour
             return;
         }
 
-        // Boss 2 ở 10 phút
         if (!boss2Spawned && gameTime >= boss2Time && boss2Prefab != null)
         {
             SpawnBoss(boss2Prefab);
@@ -258,25 +233,15 @@ public class EnemySpawner : MonoBehaviour
     {
         isBossActive = true;
 
-        // spawn boss gần player (hoặc giữa map tuỳ bạn)
         Vector3 spawnPos = player.position + new Vector3(0f, 5f, 0f);
         GameObject bossObj = Instantiate(bossPrefab, spawnPos, Quaternion.identity);
-
-        // Gợi ý: trong script Boss, khi chết hãy gọi:
-        // FindObjectOfType<EnemySpawner>().OnBossDied();
     }
 
-    // Hàm public để Boss gọi khi chết
     public void OnBossDied()
     {
         isBossActive = false;
-
-        // sau khi boss chết: gameTime tiếp tục tăng, spawn quái trở lại
     }
 
-    // -------------------------
-    // Helper
-    // -------------------------
     GameObject GetRandomFromArray(GameObject[] arr)
     {
         if (arr == null || arr.Length == 0) return null;

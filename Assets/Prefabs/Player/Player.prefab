@@ -56,9 +56,6 @@ GameObject:
   - component: {fileID: 8699960145925209455}
   - component: {fileID: 4899536477907212241}
   - component: {fileID: 8591491253825294222}
-  - component: {fileID: 5670741355294361849}
-  - component: {fileID: 4201294803077943458}
-  - component: {fileID: 4788950559912033052}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -216,7 +213,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0, y: 0}
+  m_Offset: {x: -0.13098073, y: -0.038523763}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -226,7 +223,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.024, y: 1.536}
+  m_Size: {x: 0.59253454, y: 1.3048575}
   m_EdgeRadius: 0
 --- !u!95 &1458956477504486396
 Animator:
@@ -381,7 +378,7 @@ MonoBehaviour:
   level3_FireRateBonus: 0.5
   level4_ProjectileBonus: 1
   level5_DamageBonus: 10
-  unlocked: 0
+  unlocked: 1
   weaponLevel: 0
 --- !u!114 &5186144583079406183
 MonoBehaviour:
@@ -408,7 +405,7 @@ MonoBehaviour:
   level3_FireRateBonus: 0.5
   level4_ProjectileBonus: 1
   level5_DamageBonus: 10
-  unlocked: 0
+  unlocked: 1
   weaponLevel: 0
 --- !u!114 &8699960145925209455
 MonoBehaviour:
@@ -435,7 +432,7 @@ MonoBehaviour:
   level3_FireRateBonus: 0.5
   level4_ProjectileBonus: 1
   level5_DamageBonus: 10
-  unlocked: 0
+  unlocked: 1
   weaponLevel: 0
 --- !u!114 &4899536477907212241
 MonoBehaviour:
@@ -493,84 +490,3 @@ MonoBehaviour:
   orbitRadius: 1.5
   orbitSpeed: 180
   orbitOffset: {x: 0, y: 0}
---- !u!114 &5670741355294361849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6884814791774629851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbde2775b6c575f4c828e4f25d3da053, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BaseFireBallWeapon
-  playerStats: {fileID: 1382928531321252743}
-  firePoint: {fileID: 3936341816686498495}
-  bulletPrefab: {fileID: 2944516281596723662, guid: 341221572f30dab41983f82891199124, type: 3}
-  baseDamage: 5
-  baseProjectile: 1
-  baseFireRate: 1
-  damagePerGlobalLevel: 2
-  projectilePerGlobalLevel: 0.25
-  fireRatePerGlobalLevel: 0.1
-  level2_DamageBonus: 5
-  level3_FireRateBonus: 0.5
-  level4_ProjectileBonus: 1
-  level5_DamageBonus: 10
-  unlocked: 0
-  weaponLevel: 0
---- !u!114 &4201294803077943458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6884814791774629851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6926e5975106344ca2e7a0fcdc5ac93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BaseBowWeapon
-  playerStats: {fileID: 1382928531321252743}
-  firePoint: {fileID: 3936341816686498495}
-  bulletPrefab: {fileID: 2944516281596723662, guid: 97b1df5af6788f641a6c104ff0d0bbc1, type: 3}
-  baseDamage: 5
-  baseProjectile: 1
-  baseFireRate: 1
-  damagePerGlobalLevel: 2
-  projectilePerGlobalLevel: 0.25
-  fireRatePerGlobalLevel: 0.1
-  level2_DamageBonus: 5
-  level3_FireRateBonus: 0.5
-  level4_ProjectileBonus: 1
-  level5_DamageBonus: 10
-  unlocked: 0
-  weaponLevel: 0
---- !u!114 &4788950559912033052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6884814791774629851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5088885f7136de5468682b8c1c888d47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BaseSwordWeapon
-  playerStats: {fileID: 1382928531321252743}
-  firePoint: {fileID: 3936341816686498495}
-  bulletPrefab: {fileID: 2944516281596723662, guid: 48be3a35ac7dba646813f0f132a02b60, type: 3}
-  baseDamage: 5
-  baseProjectile: 1
-  baseFireRate: 1
-  damagePerGlobalLevel: 2
-  projectilePerGlobalLevel: 0.25
-  fireRatePerGlobalLevel: 0.1
-  level2_DamageBonus: 5
-  level3_FireRateBonus: 0.5
-  level4_ProjectileBonus: 1
-  level5_DamageBonus: 10
-  unlocked: 0
-  weaponLevel: 0

@@ -31,9 +31,11 @@ public class FireBallWeapon : MonoBehaviour
     private float fireTimer = 0f;
     private bool isFiring = false;
     private bool _fireContinuously;
+    private PlayerAnimationController animController;
 
     void Awake()
     {
+        animController = GetComponent<PlayerAnimationController>();
         if (playerStats == null)
             playerStats = GetComponentInParent<PlayerStats>();
     }
@@ -139,6 +141,14 @@ public class FireBallWeapon : MonoBehaviour
     // ====== BẮN ĐẠN ======
     void Fire()
     {
+        int currentChar = CharacterSelectionData.SelectedCharacterIndex;
+
+        // Nếu là nhân vật số 1 → chơi animation Shoot
+        if (currentChar == 1)
+        {
+            animController.PlayShoot();
+        }
+
         int dmg = GetCurrentDamage();
         int projCount = GetCurrentProjectileCount();
 

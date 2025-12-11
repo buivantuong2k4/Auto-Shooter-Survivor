@@ -31,9 +31,11 @@ public class BowWeapon : MonoBehaviour
     private float fireTimer = 0f;
     private bool isFiring = false;
     private bool _fireContinuously;
+    private PlayerAnimationController animController;
 
     void Awake()
     {
+        animController = GetComponent<PlayerAnimationController>();
         if (playerStats == null)
             playerStats = GetComponentInParent<PlayerStats>();
     }
@@ -69,6 +71,7 @@ public class BowWeapon : MonoBehaviour
         _fireContinuously = value.isPressed;
         if (value.isPressed)
         {
+
             isFiring = true;
         }
     }
@@ -139,6 +142,14 @@ public class BowWeapon : MonoBehaviour
     // ====== BẮN ĐẠN ======
     void Fire()
     {
+        int currentChar = CharacterSelectionData.SelectedCharacterIndex;
+
+        // Nếu là nhân vật số 0 → chơi animation Shoot
+        if (currentChar == 0)
+        {
+            animController.PlayShoot();
+        }
+
         int dmg = GetCurrentDamage();
         int projCount = GetCurrentProjectileCount();
 

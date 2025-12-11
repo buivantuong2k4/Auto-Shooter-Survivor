@@ -41,4 +41,5 @@ public class PlayerAnimationController : MonoBehaviour
             anim.SetFloat("MoveY", dir.y);
         }
     }
+
 }
