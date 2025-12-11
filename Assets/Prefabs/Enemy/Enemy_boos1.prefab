@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8758374529416567250}
   - component: {fileID: 5454690135153904769}
-  - component: {fileID: 4609815373677112844}
+  - component: {fileID: 6503913591149584568}
   m_Layer: 0
   m_Name: 'AttackRange '
   m_TagString: Untagged
@@ -68,8 +68,8 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: -0.18, y: -0.58}
-  m_Radius: 0.8
---- !u!114 &4609815373677112844
+  m_Radius: 3
+--- !u!114 &6503913591149584568
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -78,9 +78,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 479877240861090699}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ee9a1c2f7f93a84487fe0f499095e75, type: 3}
+  m_Script: {fileID: 11500000, guid: 78b897821702bd74eb2fba16eb177bf2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackRange
+  m_EditorClassIdentifier: Assembly-CSharp::BossAttackRange
 --- !u!1 &6421087323633616692
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,9 +93,9 @@ GameObject:
   - component: {fileID: 7322098960808682005}
   - component: {fileID: 3316584823146742189}
   - component: {fileID: 1449864419296947741}
-  - component: {fileID: 7868154289620924609}
   - component: {fileID: 9047566616879332492}
   - component: {fileID: 1113903560680948860}
+  - component: {fileID: 7673023999097753158}
   m_Layer: 0
   m_Name: Enemy_boos1
   m_TagString: Enemy
@@ -117,6 +117,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8758374529416567250}
+  - {fileID: 236511264461171123}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7322098960808682005
@@ -251,25 +252,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.1479449, y: 1.2630138}
   m_EdgeRadius: 0
---- !u!114 &7868154289620924609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6421087323633616692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6071ac898bf6af446a86b01ae3c0ffc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  moveSpeed: 2
-  maxHP: 20
-  attackDamage: 10
-  attackCooldown: 2
-  xpOrbPrefab: {fileID: 7162209361196343287, guid: 1ed1c5df2b7d0c847835e51b97fff913, type: 3}
-  deathDestroyDelay: 0.8
-  dropRate: 1
 --- !u!95 &9047566616879332492
 Animator:
   serializedVersion: 7
@@ -304,3 +286,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc66eaf353f2dfe4dba24e58d27d5c80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimationController
+--- !u!114 &7673023999097753158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6421087323633616692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adf3e889e6d23e048809b047562b287a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyBoss
+  moveSpeed: 3
+  maxHP: 20
+  attackCooldown: 1.5
+  bulletPrefab: {fileID: 4321560292042289765, guid: 94c365ab6a5e24e4b8ba6307c36f4257, type: 3}
+  firePoint: {fileID: 236511264461171123}
+  xpOrbPrefab: {fileID: 7162209361196343287, guid: cfae549f399d9d34e837c93d307bc7af, type: 3}
+  deathDestroyDelay: 0.8
+--- !u!1 &7489358509809803818
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 236511264461171123}
+  m_Layer: 0
+  m_Name: Firepoin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &236511264461171123
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7489358509809803818}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.23, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7739030967280302692}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
