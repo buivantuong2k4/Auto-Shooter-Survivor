@@ -9,6 +9,20 @@ public class PlayerAimAndShoot : MonoBehaviour
     private float fireTimer = 0f;
     private Camera cam;
 
+    // KHÔNG public nữa, chỉ giữ private
+    private PlayerAnimationController animController;
+
+    void Awake()
+    {
+        // TỰ TÌM script animation trên cùng GameObject
+        animController = GetComponent<PlayerAnimationController>();
+
+        if (animController == null)
+        {
+            Debug.LogError("PlayerAimAndShoot: Không tìm thấy PlayerAnimationController trên " + gameObject.name);
+        }
+    }
+
     void Start()
     {
         cam = Camera.main;
@@ -36,7 +50,7 @@ public class PlayerAimAndShoot : MonoBehaviour
     {
         fireTimer -= Time.deltaTime;
 
-        if (Input.GetButton("Fire1") && fireTimer <= 0f) // Fire1 = chuột trái
+        if ((Input.GetButton("Fire1") || Input.GetKey(KeyCode.Space)) && fireTimer <= 0f)
         {
             Shoot();
             fireTimer = fireCooldown;
@@ -49,7 +63,6 @@ public class PlayerAimAndShoot : MonoBehaviour
 
         GameObject bulletObj = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 
-        // lấy PlayerStats để tăng damage
         PlayerStats stats = GetComponent<PlayerStats>();
         Bullet bullet = bulletObj.GetComponent<Bullet>();
 
@@ -57,6 +70,11 @@ public class PlayerAimAndShoot : MonoBehaviour
         {
             bullet.damage = Mathf.RoundToInt(bullet.damage * stats.mainWeaponDamageMultiplier);
         }
-    }
 
+        // 👉 GỌI THẲNG ANIMATION, KHÔNG GÁN TAY
+        if (animController != null)
+        {
+            animController.PlayShoot();
+        }
+    }
 }
