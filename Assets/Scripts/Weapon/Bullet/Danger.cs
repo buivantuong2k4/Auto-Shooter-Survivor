@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class BulletWeapon : MonoBehaviour
+public class Danger : MonoBehaviour
 {
     [Header("Tham chiếu")]
     public PlayerStats playerStats;
@@ -24,7 +24,7 @@ public class BulletWeapon : MonoBehaviour
     public float fireRatePerGlobalLevel = 0.1f;
 
     [Header("Trạng thái vũ khí")]
-    public bool unlocked = true;   // ban đầu chưa mua
+    public bool unlocked = false;   // ban đầu chưa mua
     public int weaponLevel = 0;
 
     private float fireTimer = 0f;

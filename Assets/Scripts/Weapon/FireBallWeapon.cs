@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class BulletWeapon : MonoBehaviour
+public class FireBallWeapon : MonoBehaviour
 {
     [Header("Tham chiếu")]
     public PlayerStats playerStats;
@@ -9,23 +9,24 @@ public class BulletWeapon : MonoBehaviour
     public GameObject bulletPrefab;
 
     [Header("Base stats RIÊNG của vũ khí này")]
-    public int baseDamage = 10;
+    public int baseDamage = 5;
     public int baseProjectile = 1;
     public float baseFireRate = 1f;   // phát / giây
-
-    [Header("Tăng khi NÂNG CẤP vũ khí này (weapon level)")]
-    public int damagePerWeaponLevel = 5;
-    public float projectilePerWeaponLevel = 0.5f;
-    public float fireRatePerWeaponLevel = 0.2f;
 
     [Header("Scale theo PLAYER STATS (global level)")]
     public float damagePerGlobalLevel = 2f;
     public float projectilePerGlobalLevel = 0.25f;
     public float fireRatePerGlobalLevel = 0.1f;
 
+    [Header("Tăng theo TỪNG CẤP (nhập trong Inspector)")]
+    public int level2_DamageBonus = 5;        // cấp 2: +dmg
+    public float level3_FireRateBonus = 0.5f; // cấp 3: +fire rate
+    public int level4_ProjectileBonus = 1;    // cấp 4: +số đạn
+    public int level5_DamageBonus = 10;       // cấp 5: +dmg thêm lần nữa
+
     [Header("Trạng thái vũ khí")]
-    public bool unlocked = true;   // ban đầu chưa mua
-    public int weaponLevel = 0;
+    public bool unlocked = false;
+    public int weaponLevel = 0;   // 0 = chưa có, 1–5 = cấp vũ khí
 
     private float fireTimer = 0f;
     private bool isFiring = false;
@@ -40,16 +41,14 @@ public class BulletWeapon : MonoBehaviour
     void Update()
     {
         if (!unlocked)
-        {
-
             return;
-        }
 
         if (playerStats == null || firePoint == null || bulletPrefab == null)
             return;
 
         fireTimer -= Time.deltaTime;
         if (fireTimer > 0f) return;
+
         if (_fireContinuously || isFiring)
         {
             Fire();
@@ -59,7 +58,6 @@ public class BulletWeapon : MonoBehaviour
     }
 
     // ====== INPUT từ PlayerInput (Action name: Shoot) ======
-    // PlayerInput (Behavior = Send Messages) sẽ tự gọi hàm này
     public void OnShoot(InputValue value)
     {
         if (!unlocked)
@@ -67,33 +65,42 @@ public class BulletWeapon : MonoBehaviour
             isFiring = false;
             return;
         }
+
         _fireContinuously = value.isPressed;
         if (value.isPressed)
         {
             isFiring = true;
         }
-
     }
 
     // ====== MỞ KHÓA / NÂNG CẤP ======
     public void UnlockWeapon()
     {
         unlocked = true;
-        weaponLevel = 0;
+        weaponLevel = 1;   // cấp 1: chỉ dùng base stats
     }
 
     public void UpgradeWeapon()
     {
-        weaponLevel++;
+        // Tăng tối đa tới cấp 5
+        if (weaponLevel < 5)
+            weaponLevel++;
     }
 
     // ====== TÍNH CHỈ SỐ HIỆN TẠI ======
     int GetCurrentDamage()
     {
         float dmg =
-            baseDamage
-            + weaponLevel * damagePerWeaponLevel
-            + playerStats.GetDamageLevel() * damagePerGlobalLevel;
+            baseDamage +
+            playerStats.GetDamageLevel() * damagePerGlobalLevel;
+
+        // Cấp 2: thêm dmg
+        if (weaponLevel >= 2)
+            dmg += level2_DamageBonus;
+
+        // Cấp 5: thêm dmg lần nữa
+        if (weaponLevel >= 5)
+            dmg += level5_DamageBonus;
 
         return Mathf.Max(1, Mathf.RoundToInt(dmg));
     }
@@ -101,8 +108,12 @@ public class BulletWeapon : MonoBehaviour
     int GetCurrentProjectileCount()
     {
         float count =
-            baseProjectile
-            + playerStats.GetProjectileLevel();
+            baseProjectile +
+            playerStats.GetProjectileLevel() * projectilePerGlobalLevel;
+
+        // Cấp 4: tăng số lượng đạn
+        if (weaponLevel >= 4)
+            count += level4_ProjectileBonus;
 
         return Mathf.Max(1, Mathf.RoundToInt(count));
     }
@@ -110,9 +121,12 @@ public class BulletWeapon : MonoBehaviour
     float GetCurrentFireRate()
     {
         float rate =
-            baseFireRate
-            + weaponLevel * fireRatePerWeaponLevel
-            + playerStats.GetFireRateLevel() * fireRatePerGlobalLevel;
+            baseFireRate +
+            playerStats.GetFireRateLevel() * fireRatePerGlobalLevel;
+
+        // Cấp 3: tăng fire rate
+        if (weaponLevel >= 3)
+            rate += level3_FireRateBonus;
 
         return Mathf.Max(0.1f, rate);
     }
@@ -134,7 +148,7 @@ public class BulletWeapon : MonoBehaviour
             return;
         }
 
-        float spreadAngle = 40f;
+        float spreadAngle = 60f;
         float startAngle = -spreadAngle * 0.5f;
         float step = spreadAngle / (projCount - 1);
 
@@ -144,13 +158,12 @@ public class BulletWeapon : MonoBehaviour
             Quaternion rot = firePoint.rotation * Quaternion.Euler(0f, 0f, angleOffset);
             SpawnBullet(firePoint.position, rot, dmg);
         }
-
     }
 
     void SpawnBullet(Vector3 pos, Quaternion rot, int dmg)
     {
         GameObject obj = Instantiate(bulletPrefab, pos, rot);
-        Bullet bullet = obj.GetComponent<Bullet>();
+        FireBall bullet = obj.GetComponent<FireBall>();
         if (bullet != null)
             bullet.Init(dmg);
     }

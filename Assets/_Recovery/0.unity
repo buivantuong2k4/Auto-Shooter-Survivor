@@ -311,9 +311,6 @@ GameObject:
   - component: {fileID: 423038017}
   - component: {fileID: 423038018}
   - component: {fileID: 423038019}
-  - component: {fileID: 423038020}
-  - component: {fileID: 423038021}
-  - component: {fileID: 423038022}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -333,7 +330,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 15
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0
   m_GravityScale: 0
@@ -435,6 +432,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1157268576}
+  - {fileID: 652183072}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &423038011
@@ -544,7 +542,7 @@ MonoBehaviour:
   speedLevel: 0
   damageLevel: 0
   fireRateLevel: 0
-  projectileLevel: 0
+  projectileLevel: 2
 --- !u!114 &423038017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -616,102 +614,17 @@ MonoBehaviour:
   playerStats: {fileID: 423038016}
   firePoint: {fileID: 1157268576}
   bulletPrefab: {fileID: 2944516281596723662, guid: 341221572f30dab41983f82891199124, type: 3}
-  baseDamage: 5
-  baseProjectile: 4
-  baseFireRate: 3
-  damagePerGlobalLevel: 2
-  projectilePerGlobalLevel: 0.25
-  fireRatePerGlobalLevel: 0.1
-  level2_DamageBonus: 5
-  level3_FireRateBonus: 0.5
-  level4_ProjectileBonus: 1
-  level5_DamageBonus: 10
-  unlocked: 1
-  weaponLevel: 0
---- !u!114 &423038020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 423038006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2bf531fab58b834bb3e8dfdc7f4ab20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BowWeapon
-  playerStats: {fileID: 423038016}
-  firePoint: {fileID: 1157268576}
-  bulletPrefab: {fileID: 2944516281596723662, guid: 97b1df5af6788f641a6c104ff0d0bbc1, type: 3}
-  baseDamage: 10
-  baseProjectile: 3
-  baseFireRate: 1
-  damagePerGlobalLevel: 2
-  projectilePerGlobalLevel: 1
-  fireRatePerGlobalLevel: 0.1
-  level2_DamageBonus: 5
-  level3_FireRateBonus: 0.5
-  level4_ProjectileBonus: 1
-  level5_DamageBonus: 10
-  unlocked: 1
-  weaponLevel: 0
---- !u!114 &423038021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 423038006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a024c730a17bf8c4b9f4f9bea9436093, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SwordWeapon
-  playerStats: {fileID: 423038016}
-  firePoint: {fileID: 1157268576}
-  bulletPrefab: {fileID: 2944516281596723662, guid: 48be3a35ac7dba646813f0f132a02b60, type: 3}
   baseDamage: 10
   baseProjectile: 1
-  baseFireRate: 0.5
-  damagePerGlobalLevel: 2
-  projectilePerGlobalLevel: 0.25
-  fireRatePerGlobalLevel: 0.1
-  level2_DamageBonus: 5
-  level3_FireRateBonus: 0.5
-  level4_ProjectileBonus: 1
-  level5_DamageBonus: 10
-  unlocked: 1
-  weaponLevel: 0
---- !u!114 &423038022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 423038006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc593f5ddbbf6ee45b6e8983bc278d9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShurikenWeapon
-  playerStats: {fileID: 423038016}
-  firePoint: {fileID: 1157268576}
-  bulletPrefab: {fileID: 2944516281596723662, guid: 7bad5c0bf003b0b469e378380631fdb7, type: 3}
-  baseDamage: 5
-  baseProjectile: 3
   baseFireRate: 1
+  damagePerWeaponLevel: 5
+  projectilePerWeaponLevel: 0.5
+  fireRatePerWeaponLevel: 0.2
   damagePerGlobalLevel: 2
   projectilePerGlobalLevel: 0.25
   fireRatePerGlobalLevel: 0.1
-  level2_DamageBonus: 5
-  level3_ProjectileBonus: 0.5
-  level4_ProjectileBonus: 1
-  level5_DamageBonus: 10
   unlocked: 1
   weaponLevel: 0
-  orbitRadius: 2
-  orbitSpeed: 300
-  orbitOffset: {x: 0, y: 0}
 --- !u!1 &424384526
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,6 +1094,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &652183071
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 652183072}
+  m_Layer: 0
+  m_Name: Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &652183072
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652183071}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 423038010}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &684253023
 GameObject:
