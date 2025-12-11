@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 6732969983676630958}
   m_Layer: 0
   m_Name: Enemy_Fly
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -265,8 +265,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   moveSpeed: 2
   maxHP: 20
-  attackDamage: 10
-  attackCooldown: 2
+  attackDamage: 20
+  attackCooldown: 1
   xpOrbPrefab: {fileID: 7162209361196343287, guid: 1ed1c5df2b7d0c847835e51b97fff913, type: 3}
   deathDestroyDelay: 0.8
   dropRate: 1

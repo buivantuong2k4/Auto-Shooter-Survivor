@@ -1,3 +1,5 @@
+using System.Collections;
+
 using UnityEngine;
 
 [RequireComponent(typeof(EnemyAnimationController))]
@@ -138,14 +140,24 @@ public class Enemy : MonoBehaviour
             col.enabled = false;
         }
 
-        // spawn xp orb
+        // chạy quy trình death (delay → spawn orb → destroy)
+        StartCoroutine(DeathRoutine());
+    }
+
+    IEnumerator DeathRoutine()
+    {
+        // 🔥 chờ animation chạy được 0.03s
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
+        // 🔵 spawn XP orb sau delay
         if (xpOrbPrefab != null)
         {
             Instantiate(xpOrbPrefab, transform.position, Quaternion.identity);
-
-            // xoá enemy sau khi anim chết chạy gần xong
-            Destroy(gameObject, deathDestroyDelay);
         }
+
+
+
+
     }
 
     // Hàm này được gọi từ EnemyAttackRange (child)

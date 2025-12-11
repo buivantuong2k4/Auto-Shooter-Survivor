@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 6061354989879535939}
   m_Layer: 0
   m_Name: Enemy_Mushroom
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +112,7 @@ Transform:
   m_GameObject: {fileID: 7150563147510171426}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.80371, y: 1.42902, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.45, y: 1.45, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   moveSpeed: 2
-  maxHP: 20
+  maxHP: 30
   attackDamage: 10
   attackCooldown: 2
   xpOrbPrefab: {fileID: 7162209361196343287, guid: 1ed1c5df2b7d0c847835e51b97fff913, type: 3}
