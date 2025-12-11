@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8d9c01557e9274d9b8e9961ad65086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Slash
-  speed: 5
+  speed: 4
   lifeTime: 3
 --- !u!68 &7535036362081490496
 EdgeCollider2D:

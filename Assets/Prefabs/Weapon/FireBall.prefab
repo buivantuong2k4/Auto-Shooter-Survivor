@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89ae2409740516c4eb520930bf244940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FireBall
-  speed: 8
+  speed: 6
   lifeTime: 2
 --- !u!95 &-4375853075970134236
 Animator:

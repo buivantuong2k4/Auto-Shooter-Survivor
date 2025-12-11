@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3387779552743590034}
   - component: {fileID: 5211292623852618236}
   - component: {fileID: 3752635403265360304}
-  - component: {fileID: -5351319053405652066}
+  - component: {fileID: 2430365106674235895}
   m_Layer: 0
   m_Name: Knife
   m_TagString: Untagged
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 1.5, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 4946167032736908908, guid: f04a3ba1a9cb7484f8e50a5efb54f1b0, type: 3}
+  m_Sprite: {fileID: -8891233751370010119, guid: 73d732ba6cf542c4ebf88295535f00f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -158,7 +158,7 @@ CapsuleCollider2D:
   m_Offset: {x: -0.003428062, y: 0.0024486566}
   m_Size: {x: 0.25274533, y: 0.05157636}
   m_Direction: 1
---- !u!114 &-5351319053405652066
+--- !u!114 &2430365106674235895
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,8 +167,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2944516281596723662}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b935972cde4ffa74fb2144a258234671, type: 3}
+  m_Script: {fileID: 11500000, guid: ee0f43922f3e07549a4ac91b35e11dad, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Arrow
-  speed: 10
+  m_EditorClassIdentifier: Assembly-CSharp::Knife
+  speed: 8
   lifeTime: 2
