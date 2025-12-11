@@ -15,7 +15,7 @@ public class ShurikenWeapon : MonoBehaviour
 
     [Header("Scale theo PLAYER STATS (global level)")]
     public float damagePerGlobalLevel = 2f;
-    public float projectilePerGlobalLevel = 0.25f;
+    public float projectilePerGlobalLevel = 1f;
     public float fireRatePerGlobalLevel = 0.1f;
 
     [Header("Tăng theo TỪNG CẤP (nhập trong Inspector)")]
@@ -89,8 +89,7 @@ public class ShurikenWeapon : MonoBehaviour
     int GetCurrentDamage()
     {
         float dmg =
-            baseDamage +
-            playerStats.GetDamageLevel() * damagePerGlobalLevel;
+            baseDamage * (100f + playerStats.GetDamageLevel() * damagePerGlobalLevel) / 100f;
 
         if (weaponLevel >= 2)
             dmg += level2_DamageBonus;

@@ -49,7 +49,7 @@ public class PlayerHealth : MonoBehaviour
     {
 
         Debug.Log("PLAYER DEAD - GAME OVER");
-        Time.timeScale = 0f;
+        Time.timeScale = 1f;
     }
 
     public float GetCurrentHP() => currentHP;

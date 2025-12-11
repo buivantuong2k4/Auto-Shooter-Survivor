@@ -44,14 +44,18 @@ GameObject:
   - component: {fileID: 7374436510260241722}
   - component: {fileID: 2311783778334854233}
   - component: {fileID: 5022839223435086416}
+  - component: {fileID: 8227192281860897124}
+  - component: {fileID: 3980300819932769955}
   - component: {fileID: 6087282355975691231}
   - component: {fileID: 7716635278787335198}
   - component: {fileID: 5429503382297191384}
   - component: {fileID: 7252497322858827341}
-  - component: {fileID: 5144600808771364346}
-  - component: {fileID: 8227192281860897124}
   - component: {fileID: 2195056280714326223}
-  - component: {fileID: 3980300819932769955}
+  - component: {fileID: -956382118613093833}
+  - component: {fileID: -5906834358187950741}
+  - component: {fileID: 6716301540161098477}
+  - component: {fileID: 7728891483207317088}
+  - component: {fileID: -7539210057263503197}
   m_Layer: 0
   m_Name: Player 3
   m_TagString: Player
@@ -209,7 +213,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0, y: 0}
+  m_Offset: {x: -0.105801225, y: 0.00000011920929}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -219,8 +223,60 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.024, y: 1.536}
+  m_Size: {x: 0.6478189, y: 1.2538638}
   m_EdgeRadius: 0
+--- !u!95 &8227192281860897124
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6664203642480879632}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2ab269454561b52449b9641b1073f0b7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3980300819932769955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6664203642480879632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!114 &6087282355975691231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +291,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAimAndShoot
   firePoint: {fileID: 4624719145212312717}
   bulletPrefab: {fileID: 4467724607996236159, guid: 8e1852ef4a9b7f342995b911045708a9, type: 3}
+  shootFlipDuration: 0.1
+  isShootingFlip: 0
 --- !u!114 &7716635278787335198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,44 +341,6 @@ MonoBehaviour:
   damageLevel: 0
   fireRateLevel: 0
   projectileLevel: 0
---- !u!114 &5144600808771364346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6664203642480879632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5550828c389b61748bfc1573d14882c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FireBurstWeapon
-  isUnlocked: 0
-  cooldown: 5
-  radius: 2.5
-  baseDamage: 20
---- !u!95 &8227192281860897124
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6664203642480879632}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2ab269454561b52449b9641b1073f0b7, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &2195056280714326223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,7 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db5088755330a14587891879055b6cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimationController
---- !u!114 &3980300819932769955
+--- !u!114 &-956382118613093833
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -342,24 +362,132 @@ MonoBehaviour:
   m_GameObject: {fileID: 6664203642480879632}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Script: {fileID: 11500000, guid: adb6c56441583a24dab115e0599920d6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: 
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::FireBallWeapon
+  playerStats: {fileID: 7252497322858827341}
+  firePoint: {fileID: 4624719145212312717}
+  bulletPrefab: {fileID: 2944516281596723662, guid: 341221572f30dab41983f82891199124, type: 3}
+  baseDamage: 5
+  baseProjectile: 1
+  baseFireRate: 0.8
+  damagePerGlobalLevel: 20
+  projectilePerGlobalLevel: 1
+  fireRatePerGlobalLevel: 0.1
+  level2_DamageBonus: 5
+  level3_FireRateBonus: 0.3
+  level4_ProjectileBonus: 1
+  level5_DamageBonus: 10
+  unlocked: 0
+  weaponLevel: 0
+--- !u!114 &-5906834358187950741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6664203642480879632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2bf531fab58b834bb3e8dfdc7f4ab20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BowWeapon
+  playerStats: {fileID: 7252497322858827341}
+  firePoint: {fileID: 4624719145212312717}
+  bulletPrefab: {fileID: 2944516281596723662, guid: 97b1df5af6788f641a6c104ff0d0bbc1, type: 3}
+  baseDamage: 5
+  baseProjectile: 1
+  baseFireRate: 1.2
+  damagePerGlobalLevel: 20
+  projectilePerGlobalLevel: 1
+  fireRatePerGlobalLevel: 0.2
+  level2_DamageBonus: 5
+  level3_FireRateBonus: 0.3
+  level4_ProjectileBonus: 2
+  level5_DamageBonus: 10
+  unlocked: 0
+  weaponLevel: 0
+--- !u!114 &6716301540161098477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6664203642480879632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a024c730a17bf8c4b9f4f9bea9436093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwordWeapon
+  playerStats: {fileID: 7252497322858827341}
+  firePoint: {fileID: 4624719145212312717}
+  bulletPrefab: {fileID: 2944516281596723662, guid: 48be3a35ac7dba646813f0f132a02b60, type: 3}
+  baseDamage: 20
+  baseProjectile: 1
+  baseFireRate: 0.3
+  damagePerGlobalLevel: 15
+  projectilePerGlobalLevel: 0.5
+  fireRatePerGlobalLevel: 0.1
+  level2_DamageBonus: 10
+  level3_FireRateBonus: 0.3
+  level4_ProjectileBonus: 1
+  level5_DamageBonus: 20
+  unlocked: 1
+  weaponLevel: 1
+--- !u!114 &7728891483207317088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6664203642480879632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc593f5ddbbf6ee45b6e8983bc278d9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShurikenWeapon
+  playerStats: {fileID: 7252497322858827341}
+  firePoint: {fileID: 4624719145212312717}
+  bulletPrefab: {fileID: 2944516281596723662, guid: 7bad5c0bf003b0b469e378380631fdb7, type: 3}
+  baseDamage: 10
+  baseProjectile: 2
+  baseFireRate: 1
+  damagePerGlobalLevel: 20
+  projectilePerGlobalLevel: 1
+  fireRatePerGlobalLevel: 1
+  level2_DamageBonus: 5
+  level3_ProjectileBonus: 0.5
+  level4_ProjectileBonus: 2
+  level5_DamageBonus: 10
+  unlocked: 0
+  weaponLevel: 0
+  orbitRadius: 2
+  orbitSpeed: 200
+  orbitOffset: {x: 0, y: 0}
+--- !u!114 &-7539210057263503197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6664203642480879632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0661e0120288cc4bbd6d2a0a30c3740, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KnifeWeapon
+  playerStats: {fileID: 7252497322858827341}
+  firePoint: {fileID: 4624719145212312717}
+  bulletPrefab: {fileID: 2944516281596723662, guid: ecb38499d407f6543abee28daba22f50, type: 3}
+  baseDamage: 10
+  baseProjectile: 1
+  baseFireRate: 0.5
+  damagePerGlobalLevel: 20
+  projectilePerGlobalLevel: 0.5
+  fireRatePerGlobalLevel: 0.2
+  level2_DamageBonus: 5
+  level3_FireRateBonus: 0.3
+  level4_ProjectileBonus: 2
+  level5_DamageBonus: 10
+  unlocked: 0
+  weaponLevel: 0

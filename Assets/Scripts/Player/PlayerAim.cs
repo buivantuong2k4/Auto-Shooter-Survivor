@@ -5,7 +5,7 @@ public class PlayerAim : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject bulletPrefab;
-    public float shootFlipDuration = 0.1f;   // thời gian “ưu tiên flip theo bắn”
+    public float shootFlipDuration = 0f;   // thời gian “ưu tiên flip theo bắn”
 
     private float fireTimer;
     private Camera cam;

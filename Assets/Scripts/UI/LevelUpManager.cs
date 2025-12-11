@@ -9,11 +9,12 @@ public class LevelUpManager : MonoBehaviour
     public GameObject levelUpPanel;
     public LevelUpOptionButton[] optionButtons; // Option1_Btn, Option2_Btn, Option3_Btn
 
-    [Header("Danh sách tất cả lựa chọdwdn upgrade")]
+    [Header("Danh sách tất cả lựa chọn upgrade")]
     public List<UpgradeData> allUpgrades = new List<UpgradeData>();
 
     // --------- Stats & Weapons (lấy từ Player sau khi spawn) ----------
     private PlayerStats playerStats;
+    private PlayerHealth playerHealth;
 
     // đảm bảo các script weapon có: public int weaponLevel;  (và nếu được thêm public bool unlocked;)
     private BowWeapon bow;
@@ -45,6 +46,7 @@ public class LevelUpManager : MonoBehaviour
 
         // Lấy stats + vũ khí từ prefab (tìm cả trong con)
         playerStats = player.GetComponent<PlayerStats>();
+        playerHealth = player.GetComponent<PlayerHealth>();
 
         bow = player.GetComponentInChildren<BowWeapon>();
         fireball = player.GetComponentInChildren<FireBallWeapon>();
@@ -66,25 +68,21 @@ public class LevelUpManager : MonoBehaviour
             case 0: // char 1: Bow
                 if (bow != null)
                 {
-                    bow.weaponLevel = Mathf.Max(bow.weaponLevel, 1);
-                    // nếu trong script có bool unlocked thì mở:
-                    // bow.unlocked = true;
+                    bow.UnlockWeapon();
                 }
                 break;
 
             case 1: // char 2: Fireball
                 if (fireball != null)
                 {
-                    fireball.weaponLevel = Mathf.Max(fireball.weaponLevel, 1);
-                    // fireball.unlocked = true;
+                    fireball.UnlockWeapon();
                 }
                 break;
 
             case 2: // char 3: Sword
                 if (sword != null)
                 {
-                    sword.weaponLevel = Mathf.Max(sword.weaponLevel, 1);
-                    // sword.unlocked = true;
+                    sword.UnlockWeapon();
                 }
                 break;
         }
@@ -194,36 +192,56 @@ public class LevelUpManager : MonoBehaviour
     //==================================================================
     void ApplyUpgrade(UpgradeData data)
     {
+        Debug.Log("ApplyUpgrade: " + data.type);
+
         switch (data.type)
         {
             // ----- STATS -----
             case UpgradeType.MaxHP:
-                playerStats?.IncreaseHealthLevel();
+                if (playerStats != null)
+                {
+                    playerStats.IncreaseHealthLevel();
+
+                    // Cập nhật maxHP và currentHP trong PlayerHealth
+                    if (playerHealth != null)
+                    {
+                        playerHealth.RefreshMaxHP();
+                    }
+                }
                 break;
 
             case UpgradeType.MoveSpeed:
-                playerStats?.IncreaseSpeedLevel();
+                if (playerStats != null)
+                {
+                    playerStats.IncreaseSpeedLevel();
+                }
                 break;
 
             case UpgradeType.GlobalDamage:
-                playerStats?.IncreaseDamageLevel();
+                if (playerStats != null)
+                {
+                    playerStats.IncreaseDamageLevel();
+                }
                 break;
 
             case UpgradeType.GlobalFireRate:
-                playerStats?.IncreaseFireRateLevel();
+                if (playerStats != null)
+                {
+                    playerStats.IncreaseFireRateLevel();
+                }
                 break;
 
             case UpgradeType.GlobalProjectile:
-                playerStats?.IncreaseProjectileLevel();
+                if (playerStats != null)
+                {
+                    playerStats.IncreaseProjectileLevel();
+                }
                 break;
 
             // ----- WEAPONS -----
             case UpgradeType.BowWeapon:
                 if (bow != null)
                 {
-                    // nếu có biến unlocked thì mở vũ khí ở lần đầu
-                    // if (!bow.unlocked) { bow.unlocked = true; bow.weaponLevel = 1; }
-                    // else bow.UpgradeWeapon();
                     bow.UpgradeWeapon();
                 }
                 break;
@@ -231,8 +249,6 @@ public class LevelUpManager : MonoBehaviour
             case UpgradeType.FireBallWeapon:
                 if (fireball != null)
                 {
-                    // if (!fireball.unlocked) { fireball.unlocked = true; fireball.weaponLevel = 1; }
-                    // else fireball.UpgradeWeapon();
                     fireball.UpgradeWeapon();
                 }
                 break;
@@ -240,8 +256,6 @@ public class LevelUpManager : MonoBehaviour
             case UpgradeType.KnifeWeapon:
                 if (knife != null)
                 {
-                    // if (!knife.unlocked) { knife.unlocked = true; knife.weaponLevel = 1; }
-                    // else knife.UpgradeWeapon();
                     knife.UpgradeWeapon();
                 }
                 break;
@@ -249,8 +263,6 @@ public class LevelUpManager : MonoBehaviour
             case UpgradeType.ShurikenWeapon:
                 if (shuriken != null)
                 {
-                    // if (!shuriken.unlocked) { shuriken.unlocked = true; shuriken.weaponLevel = 1; }
-                    // else shuriken.UpgradeWeapon();
                     shuriken.UpgradeWeapon();
                 }
                 break;
@@ -258,8 +270,6 @@ public class LevelUpManager : MonoBehaviour
             case UpgradeType.SwordWeapon:
                 if (sword != null)
                 {
-                    // if (!sword.unlocked) { sword.unlocked = true; sword.weaponLevel = 1; }
-                    // else sword.UpgradeWeapon();
                     sword.UpgradeWeapon();
                 }
                 break;
