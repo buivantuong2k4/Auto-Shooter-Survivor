@@ -76,13 +76,13 @@ public class ShurikenWeapon : MonoBehaviour
     public void UnlockWeapon()
     {
         unlocked = true;
-        weaponLevel = 1;
     }
 
     public void UpgradeWeapon()
     {
         if (weaponLevel < 5)
             weaponLevel++;
+        UnlockWeapon();
     }
 
     // ====== TÍNH CHỈ SỐ HIỆN TẠI ======

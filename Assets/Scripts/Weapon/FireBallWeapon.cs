@@ -79,7 +79,6 @@ public class FireBallWeapon : MonoBehaviour
     public void UnlockWeapon()
     {
         unlocked = true;
-        weaponLevel = 1;   // cấp 1: chỉ dùng base stats
     }
 
     public void UpgradeWeapon()
@@ -87,6 +86,7 @@ public class FireBallWeapon : MonoBehaviour
         // Tăng tối đa tới cấp 5
         if (weaponLevel < 5)
             weaponLevel++;
+        UnlockWeapon();
     }
 
     // ====== TÍNH CHỈ SỐ HIỆN TẠI ======
