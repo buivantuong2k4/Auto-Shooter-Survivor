@@ -459,7 +459,7 @@ MonoBehaviour:
   level3_ProjectileBonus: 0.5
   level4_ProjectileBonus: 1
   level5_DamageBonus: 10
-  unlocked: 0
+  unlocked: 1
   weaponLevel: 0
   orbitRadius: 1.5
   orbitSpeed: 180

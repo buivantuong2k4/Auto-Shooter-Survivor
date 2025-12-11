@@ -146,6 +146,7 @@ public class FireBallWeapon : MonoBehaviour
         // Nếu là nhân vật số 1 → chơi animation Shoot
         if (currentChar == 1)
         {
+            AudioManager.Instance.PlaySFX("fireball");
             animController.PlayShoot();
         }
 

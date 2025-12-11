@@ -148,7 +148,9 @@ public class SwordWeapon : MonoBehaviour
         // Nếu là nhân vật số 0 → chơi animation Shoot
         if (currentChar == 2)
         {
+            AudioManager.Instance.PlaySFX("kiem");
             animController.PlayShoot();
+
         }
 
         int dmg = GetCurrentDamage();

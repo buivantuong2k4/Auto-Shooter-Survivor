@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         stats = GetComponent<PlayerStats>();
+
 
         if (stats == null)
         {
@@ -49,7 +51,8 @@ public class PlayerHealth : MonoBehaviour
     {
 
         Debug.Log("PLAYER DEAD - GAME OVER");
-        Time.timeScale = 0f;
+        // Time.timeScale = 0f;
+        SceneManager.LoadScene("EndGameScene");
     }
 
     public float GetCurrentHP() => currentHP;
