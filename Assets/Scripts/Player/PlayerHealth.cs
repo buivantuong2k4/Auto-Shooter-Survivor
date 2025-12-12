@@ -7,6 +7,12 @@ public class PlayerHealth : MonoBehaviour
 
     private float currentHP;
     private float maxHP;
+    private PlayerAnimationController animController;
+
+    void Awake()
+    {
+        animController = GetComponent<PlayerAnimationController>();
+    }
 
     void Start()
     {
@@ -50,9 +56,12 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
 
+        AudioManager.Instance.PlaySFX("PlayerDie");
+        animController.PlayDeath();
         Debug.Log("PLAYER DEAD - GAME OVER");
-        // Time.timeScale = 0f;
-        SceneManager.LoadScene("EndGameScene");
+        Time.timeScale = 0f;
+        // SceneManager.LoadScene("EndGameScene");
+
     }
 
     public float GetCurrentHP() => currentHP;
