@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(EnemyAnimationController))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -11,8 +12,15 @@ public class EnemyBoss : MonoBehaviour
 
     [Header("Combat")]
     public float attackCooldown = 1.5f; // Tốc độ bắn
+    public float attackRange = 5f;      // Tầm bắn
     public GameObject bulletPrefab;     // Kéo prefab BossBullet vào đây
     public Transform firePoint;         // Vị trí đạn bay ra (đặt ở tay hoặc miệng boss)
+
+    [Header("Multi-Shot Attack")]
+    public int burstCount = 5;          // Số lần bắn liên tiếp
+    public float delayBetweenBursts = 0.15f;  // Delay giữa các loạt
+    public int bulletPerBurst = 3;      // Số đạn mỗi loạt
+    public float spreadAngle = 40f;     // Góc spread
 
     [Header("Drop")]
     public GameObject xpOrbPrefab;
@@ -27,6 +35,7 @@ public class EnemyBoss : MonoBehaviour
 
     private bool isDead = false;
     private float attackTimer = 0f;
+    private Coroutine shootCoroutine;
 
     void Awake()
     {
@@ -44,11 +53,24 @@ public class EnemyBoss : MonoBehaviour
 
         // Nếu quên gán firePoint thì lấy vị trí của boss luôn
         if (firePoint == null) firePoint = transform;
+
+        // Cập nhật CircleCollider2D để match với attackRange
+        CircleCollider2D attackRangeCollider = GetComponentInChildren<CircleCollider2D>();
+        if (attackRangeCollider != null)
+        {
+            attackRangeCollider.radius = attackRange;
+        }
     }
 
     void Update()
     {
         if (isDead) return;
+
+        // Nếu chưa có player thì thử tìm lại
+        if (player == null)
+        {
+            TryFindPlayer();
+        }
 
         attackTimer -= Time.deltaTime;
 
@@ -64,21 +86,35 @@ public class EnemyBoss : MonoBehaviour
         if (targetPlayerHealth != null)
         {
             // --- TRONG VÙNG ATTACK ---
-            // 1. Dừng di chuyển
-            rb.linearVelocity = Vector2.zero;
-            animController.SetRunning(false);
-
-            // 2. Quay mặt về phía player kể cả khi đứng yên bắn
             FacePlayer();
 
-            // 3. Bắn
-            TryShoot();
+            // Nếu cooldown xong thì bắn, nếu chưa xong thì vẫn di chuyển tới player
+            if (attackTimer <= 0f)
+            {
+                rb.linearVelocity = Vector2.zero;
+                animController.SetRunning(false);
+                TryShoot();
+            }
+            else
+            {
+                // Đang cooldown, vẫn di chuyển tới player
+                MoveTowardPlayer();
+            }
         }
         else
         {
             // --- NGOÀI VÙNG ATTACK ---
             // Di chuyển tới player
             MoveTowardPlayer();
+        }
+    }
+
+    void TryFindPlayer()
+    {
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            player = playerObj.transform;
         }
     }
 
@@ -127,21 +163,56 @@ public class EnemyBoss : MonoBehaviour
 
         animController.PlayAttack();
 
-        if (bulletPrefab != null && firePoint != null)
+        // Stop coroutine cũ nếu có
+        if (shootCoroutine != null)
+            StopCoroutine(shootCoroutine);
+
+        // Bắt đầu coroutine bắn multi-shot
+        shootCoroutine = StartCoroutine(MultiShotAttack());
+
+        attackTimer = attackCooldown;
+    }
+
+    IEnumerator MultiShotAttack()
+    {
+        // Bắn 5 loạt liên tiếp
+        for (int burst = 0; burst < burstCount; burst++)
         {
-            // Tính hướng bắn trực tiếp từ FirePoint tới vị trí hiện tại của player
-            Vector2 shootDir = (player.position - firePoint.position).normalized;
+            AudioManager.Instance.PlaySFX("FireBallBoss");
+            // Mỗi loạt bắn 3 tia với góc spread 40 độ
+            float startAngle = -spreadAngle * 0.5f;
+            float step = bulletPerBurst > 1 ? spreadAngle / (bulletPerBurst - 1) : 0f;
 
-            GameObject bulletObj = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-            BossBullet bulletScript = bulletObj.GetComponent<BossBullet>();
-
-            if (bulletScript != null)
+            for (int i = 0; i < bulletPerBurst; i++)
             {
-                bulletScript.Initialize(shootDir);
+                if (player == null || bulletPrefab == null || firePoint == null) break;
+
+                float angleOffset = startAngle + step * i;
+
+                // Tính hướng bắn từ firePoint tới player, sau đó rotate thêm angleOffset
+                Vector2 directionToPlayer = (player.position - firePoint.position).normalized;
+                float baseAngle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
+
+                Quaternion rot = Quaternion.AngleAxis(baseAngle + angleOffset, Vector3.forward);
+                Vector2 shootDir = rot * Vector2.right;
+
+                // Spawn bullet
+                GameObject bulletObj = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+                BossBullet bulletScript = bulletObj.GetComponent<BossBullet>();
+                if (bulletScript != null)
+                {
+                    bulletScript.Initialize(shootDir);
+                }
+            }
+
+            // Delay giữa các loạt
+            if (burst < burstCount - 1)
+            {
+                yield return new WaitForSeconds(delayBetweenBursts);
             }
         }
 
-        attackTimer = attackCooldown;
+        shootCoroutine = null;
     }
 
     public void TakeDamage(int dmg)

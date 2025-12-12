@@ -67,8 +67,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.18, y: -0.58}
-  m_Radius: 3
+  m_Offset: {x: -0.0139323035, y: -0.032716036}
+  m_Radius: 0.17021127
 --- !u!114 &6503913591149584568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,7 +112,7 @@ Transform:
   m_GameObject: {fileID: 6421087323633616692}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -31.60437, y: 15.25517, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -169,15 +169,15 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 3234629978573100161, guid: 1a1aa4a3432f402439c938c59f060670, type: 3}
+  m_Sprite: {fileID: 4723107735738678597, guid: bfce0fcaa5002c244b2e64ebb1954de0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.024, y: 1.024}
+  m_Size: {x: 0.34, y: 0.57}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!50 &3316584823146742189
 Rigidbody2D:
@@ -244,8 +244,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.45, y: 2.625}
-    newSize: {x: 1.024, y: 1.024}
+    oldSize: {x: 1.7, y: 2.85}
+    newSize: {x: 0.34, y: 0.57}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -299,12 +299,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBoss
   moveSpeed: 3
-  maxHP: 20
-  attackCooldown: 1.5
-  bulletPrefab: {fileID: 4321560292042289765, guid: 94c365ab6a5e24e4b8ba6307c36f4257, type: 3}
+  maxHP: 300
+  attackCooldown: 6
+  attackRange: 5
+  bulletPrefab: {fileID: 2944516281596723662, guid: a0d4bacbc770a8646b21eef4303e06c0, type: 3}
   firePoint: {fileID: 236511264461171123}
-  xpOrbPrefab: {fileID: 7162209361196343287, guid: cfae549f399d9d34e837c93d307bc7af, type: 3}
-  deathDestroyDelay: 0.8
+  burstCount: 5
+  delayBetweenBursts: 0.5
+  bulletPerBurst: 3
+  spreadAngle: 60
+  xpOrbPrefab: {fileID: 7162209361196343287, guid: 28adec88419e8b941a3c9888ec6a3f4e, type: 3}
+  deathDestroyDelay: 1
 --- !u!1 &7489358509809803818
 GameObject:
   m_ObjectHideFlags: 0

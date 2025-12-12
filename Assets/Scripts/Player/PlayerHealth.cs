@@ -46,8 +46,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
+
+
         currentHP -= dmg;
-        Debug.Log("Player took damage, HP: " + currentHP + "/" + maxHP);
+        AudioManager.Instance.PlaySFX("PlayerHurt");
 
         if (currentHP <= 0)
         {
@@ -71,7 +73,7 @@ public class PlayerHealth : MonoBehaviour
         float gain = maxHP - oldMax;
         currentHP += gain;
 
-        Debug.Log($"Max HP updated: {oldMax} → {maxHP} (+{gain})");
+
     }
 
     void Die()

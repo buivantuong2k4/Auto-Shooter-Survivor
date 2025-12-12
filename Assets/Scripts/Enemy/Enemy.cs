@@ -29,6 +29,7 @@ public class Enemy : MonoBehaviour
 
     private bool isDead = false;
     private float attackTimer = 0f;
+    private Coroutine attackCoroutine;
 
     void Awake()
     {
@@ -110,12 +111,27 @@ public class Enemy : MonoBehaviour
     {
         if (attackTimer > 0f || targetPlayerHealth == null) return;
 
+        // nếu đã có coroutine attack đang chạy thì bỏ qua
+        if (attackCoroutine != null) return;
+
         animController.PlayAttack();
-
-        // nếu sau này bạn muốn damage trúng đúng frame → chuyển sang dùng Animation Event
-        targetPlayerHealth.TakeDamage(attackDamage);
-
         attackTimer = attackCooldown;
+
+        // chạy coroutine để delay damage 0.3s
+        attackCoroutine = StartCoroutine(AttackDelayRoutine());
+    }
+
+    IEnumerator AttackDelayRoutine()
+    {
+        yield return new WaitForSeconds(0.8f);
+
+        // kiểm tra nếu vẫn còn chạm player thì mới deal damage
+        if (targetPlayerHealth != null)
+        {
+            targetPlayerHealth.TakeDamage(attackDamage);
+        }
+
+        attackCoroutine = null;
     }
 
     public void TakeDamage(int dmg)

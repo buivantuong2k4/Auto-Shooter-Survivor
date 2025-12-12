@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -22,26 +23,28 @@ public class EndMenu : MonoBehaviour
     // Hiển thị End Menu
     public void Show()
     {
-        Time.timeScale = 0f;  // Tạm dừng game
-        endMenuPanel.SetActive(true);
-        Debug.Log("End Menu shown!");
+        StartCoroutine(ShowMenuWithDelay());
+    }
 
-        // Lưu điểm cao vào PlayerPrefs
+    IEnumerator ShowMenuWithDelay()
+    {
+        yield return new WaitForSecondsRealtime(1f);  // Delay 1 giây 
+        Time.timeScale = 0f;
+        endMenuPanel.SetActive(true);
         SaveHighScore();
     }
 
     // Lưu điểm cao (top 5)
     private void SaveHighScore()
     {
-        // Tìm PlayerLevel để lấy currentXP
+        // Tìm PlayerLevel để lấy totalScore
         PlayerLevel playerLevel = FindFirstObjectByType<PlayerLevel>();
         if (playerLevel == null)
         {
-            Debug.LogWarning("PlayerLevel not found!");
             return;
         }
 
-        int currentScore = (int)playerLevel.currentXP;
+        int currentScore = playerLevel.GetTotalScore();
 
         // Lấy danh sách điểm cao từ PlayerPrefs
         string highScoresString = PlayerPrefs.GetString("HighScores", "");
@@ -70,8 +73,6 @@ public class EndMenu : MonoBehaviour
         string result = string.Join(",", highScores);
         PlayerPrefs.SetString("HighScores", result);
         PlayerPrefs.Save();
-
-        Debug.Log($"High Score saved! Current: {currentScore}, Top 5: {result}");
     }
 
     // Ẩn End Menu

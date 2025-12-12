@@ -5,6 +5,7 @@ public class PlayerLevel : MonoBehaviour
     public int level = 1;
     public int currentXP = 9;
     public int xpToNextLevel = 10;
+    public int totalScore = 0;  // Tổng XP nhận được (Score cuối cùng)
 
     public delegate void LevelUpEvent(int newLevel);
     public event LevelUpEvent OnLevelUp;
@@ -18,6 +19,7 @@ public class PlayerLevel : MonoBehaviour
     public void AddXP(int amount)
     {
         currentXP += amount;
+        totalScore += amount;  // Tích lũy tổng score
 
         // Lặp để xử lý trường hợp dư XP lên nhiều cấp
         while (currentXP >= xpToNextLevel)
@@ -29,13 +31,17 @@ public class PlayerLevel : MonoBehaviour
 
     void LevelUp()
     {
+        // Khóa level tối đa ở 50
+        if (level >= 50)
+        {
+            return;
+        }
+
         level++;
         LevelUpManager.Instance.ShowLevelUp();
         xpToNextLevel = CalculateXPForLevel(level);
 
         Debug.Log("LEVEL UP! New Level: " + level + "  Next XP: " + xpToNextLevel);
-
-
 
         if (OnLevelUp != null)
             OnLevelUp(level);
@@ -43,10 +49,23 @@ public class PlayerLevel : MonoBehaviour
 
     int CalculateXPForLevel(int lvl)
     {
-        float exponent = 2.18f;
-        float baseXP = 10f;
+        if (lvl >= 1 && lvl < 10)
+        {
+            return lvl * 10;
+        }
+        else if (lvl >= 10 && lvl < 30)
+        {
+            return lvl * 15;
+        }
+        else if (lvl >= 30 && lvl < 50)
+        {
+            return lvl * 20;
+        }
+        return 10;
+    }
 
-        float xp = baseXP * Mathf.Pow(lvl, exponent);
-        return Mathf.RoundToInt(xp);
+    public int GetTotalScore()
+    {
+        return totalScore;
     }
 }

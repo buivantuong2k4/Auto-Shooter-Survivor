@@ -15,16 +15,10 @@ public class EnemySpawner : MonoBehaviour
     public int maxNormalEnemies = 80;
     public int maxHardEnemies = 100;
 
-    [Header("Elite Enemies")]
-    public GameObject eliteType1;
-    public GameObject eliteType2;
-    public int maxEliteCount = 4;
-
-    public float elite1StartTime = 4f * 60f;
-    public float elite2StartTime = 8f * 60f;
-
-    public Vector2 elite1SpawnIntervalRange = new Vector2(18f, 22f);
-    public Vector2 elite2SpawnIntervalRange = new Vector2(25f, 30f);
+    [Header("Spawn Speed by Wave")]
+    public float easyWaveSpawnSpeed = 1f;      // Đợt dễ (tốc độ 1 = baseline)
+    public float normalWaveSpawnSpeed = 1.3f;  // Đợt thường (30% nhanh hơn)
+    public float hardWaveSpawnSpeed = 1.6f;    // Đợt khó (60% nhanh hơn)
 
     [Header("Boss")]
     public GameObject boss1Prefab;
@@ -42,14 +36,10 @@ public class EnemySpawner : MonoBehaviour
     private float normalSpawnTimer = 0f;
     private float currentNormalSpawnInterval = 1.2f;
 
-    private float eliteSpawnTimer = 0f;
-    private float currentEliteSpawnInterval = 999f;
-
     void Start()
     {
         TryFindPlayer();              // 🔥 thử tìm player lúc bắt đầu
         currentNormalSpawnInterval = 1.2f;
-        ResetEliteInterval();
     }
 
     void Update()
@@ -75,13 +65,6 @@ public class EnemySpawner : MonoBehaviour
             normalSpawnTimer = 0f;
         }
 
-        eliteSpawnTimer += Time.deltaTime;
-        if (eliteSpawnTimer >= currentEliteSpawnInterval)
-        {
-            TrySpawnEliteEnemy();
-            ResetEliteInterval();
-        }
-
         CheckBossSpawn();
     }
 
@@ -99,20 +82,34 @@ public class EnemySpawner : MonoBehaviour
     // ----- phần dưới giữ nguyên code của bạn -----
     void UpdateNormalSpawnInterval()
     {
+        // Tốc độ base theo thời gian
+        float baseInterval = 1.2f;
         if (gameTime < 120f)
-            currentNormalSpawnInterval = 1.2f;
+            baseInterval = 1.2f;
         else if (gameTime < 240f)
-            currentNormalSpawnInterval = 0.9f;
+            baseInterval = 0.9f;
         else if (gameTime < 300f)
-            currentNormalSpawnInterval = 0.7f;
+            baseInterval = 0.7f;
         else if (gameTime < 390f)
-            currentNormalSpawnInterval = 0.6f;
+            baseInterval = 0.6f;
         else if (gameTime < 480f)
-            currentNormalSpawnInterval = 0.45f;
+            baseInterval = 0.45f;
         else if (gameTime < 540f)
-            currentNormalSpawnInterval = 0.35f;
+            baseInterval = 0.35f;
         else
-            currentNormalSpawnInterval = 0.25f;
+            baseInterval = 0.25f;
+
+        // Áp dụng tốc độ spawn theo từng đợt
+        float spawnSpeedMultiplier = 1f;
+
+        if (gameTime < 240f)
+            spawnSpeedMultiplier = easyWaveSpawnSpeed;
+        else if (gameTime < 480f)
+            spawnSpeedMultiplier = normalWaveSpawnSpeed;
+        else
+            spawnSpeedMultiplier = hardWaveSpawnSpeed;
+
+        currentNormalSpawnInterval = baseInterval / spawnSpeedMultiplier;
     }
 
     void TrySpawnNormalEnemy()
@@ -160,56 +157,6 @@ public class EnemySpawner : MonoBehaviour
         Vector3 spawnPos = player.position + (Vector3)(randomDir * spawnRadius);
 
         Instantiate(prefabToSpawn, spawnPos, Quaternion.identity);
-    }
-
-    void ResetEliteInterval()
-    {
-        eliteSpawnTimer = 0f;
-
-        if (gameTime < elite1StartTime)
-        {
-            currentEliteSpawnInterval = 999f;
-            return;
-        }
-
-        if (gameTime >= elite2StartTime)
-        {
-            currentEliteSpawnInterval = Random.Range(15f, 25f);
-        }
-        else
-        {
-            currentEliteSpawnInterval = Random.Range(elite1SpawnIntervalRange.x, elite1SpawnIntervalRange.y);
-        }
-    }
-
-    void TrySpawnEliteEnemy()
-    {
-        if (gameTime < elite1StartTime) return;
-
-        int eliteCount = CountByTag("Elite");
-        if (eliteCount >= maxEliteCount) return;
-
-        GameObject eliteToSpawn = null;
-
-        if (gameTime >= elite2StartTime && eliteType2 != null)
-        {
-            float r = Random.value;
-            if (r < 0.6f && eliteType1 != null)
-                eliteToSpawn = eliteType1;
-            else
-                eliteToSpawn = eliteType2;
-        }
-        else
-        {
-            eliteToSpawn = eliteType1;
-        }
-
-        if (eliteToSpawn == null) return;
-
-        Vector2 randomDir = Random.insideUnitCircle.normalized;
-        Vector3 spawnPos = player.position + (Vector3)(randomDir * spawnRadius);
-
-        Instantiate(eliteToSpawn, spawnPos, Quaternion.identity);
     }
 
     void CheckBossSpawn()

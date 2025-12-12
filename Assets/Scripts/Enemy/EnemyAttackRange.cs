@@ -3,13 +3,16 @@ using UnityEngine;
 public class EnemyAttackRange : MonoBehaviour
 {
     private Enemy enemy;
+    private EnemyBoss boss;
 
     void Awake()
     {
         enemy = GetComponentInParent<Enemy>();
-        if (enemy == null)
+        boss = GetComponentInParent<EnemyBoss>();
+
+        if (enemy == null && boss == null)
         {
-            Debug.LogError("EnemyAttackRange: Không tìm thấy Enemy trên parent!");
+            Debug.LogError("EnemyAttackRange: Không tìm thấy Enemy hoặc EnemyBoss trên parent!");
         }
     }
 
@@ -20,7 +23,10 @@ public class EnemyAttackRange : MonoBehaviour
         PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
-            enemy.SetPlayerInRange(playerHealth);
+            if (enemy != null)
+                enemy.SetPlayerInRange(playerHealth);
+            if (boss != null)
+                boss.SetPlayerInRange(playerHealth);
         }
     }
 
@@ -31,7 +37,10 @@ public class EnemyAttackRange : MonoBehaviour
         PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
-            enemy.ClearPlayerInRange(playerHealth);
+            if (enemy != null)
+                enemy.ClearPlayerInRange(playerHealth);
+            if (boss != null)
+                boss.ClearPlayerInRange(playerHealth);
         }
     }
 }

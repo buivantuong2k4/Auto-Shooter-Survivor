@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3902626250049088751}
   - component: {fileID: -6937768233631874766}
   - component: {fileID: -3723318647846507981}
+  - component: {fileID: 1628517622308453096}
   m_Layer: 0
   m_Name: XPOrb2
   m_TagString: Untagged
@@ -170,3 +171,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::XPOrb
   xpValue: 20
+--- !u!95 &1628517622308453096
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7162209361196343287}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ad76aada9b1f7c742a75be13bf590a43, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

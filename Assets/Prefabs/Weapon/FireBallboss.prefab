@@ -169,7 +169,7 @@ Animator:
   m_GameObject: {fileID: 2944516281596723662}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2394e40b6e186e34ebbdc2d9292a12dd, type: 2}
+  m_Controller: {fileID: 9100000, guid: a6585e33aa9d9fd4fbb898df23ac0159, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -193,6 +193,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49219fa4d0362f4478e82293016caf69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossBullet
-  speed: 10
+  speed: 5
   damage: 10
   lifeTime: 5

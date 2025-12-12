@@ -208,7 +208,7 @@ SpriteRenderer:
   m_Size: {x: 1.024, y: 1.024}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!50 &2309926506644015212
 Rigidbody2D:
@@ -332,7 +332,12 @@ MonoBehaviour:
   moveSpeed: 3
   maxHP: 20
   attackCooldown: 1.5
+  attackRange: 5
   bulletPrefab: {fileID: 2944516281596723662, guid: a0d4bacbc770a8646b21eef4303e06c0, type: 3}
   firePoint: {fileID: 3973730183248730537}
+  burstCount: 5
+  delayBetweenBursts: 0.15
+  bulletPerBurst: 3
+  spreadAngle: 40
   xpOrbPrefab: {fileID: 7162209361196343287, guid: cfae549f399d9d34e837c93d307bc7af, type: 3}
-  deathDestroyDelay: 0.8
+  deathDestroyDelay: 1

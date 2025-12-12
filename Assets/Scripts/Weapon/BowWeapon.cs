@@ -146,10 +146,10 @@ public class BowWeapon : MonoBehaviour
         // Nếu là nhân vật số 0 → chơi animation Shoot
         if (currentChar == 0)
         {
-            AudioManager.Instance.PlaySFX("cung");
+
             animController.PlayShoot();
         }
-
+        AudioManager.Instance.PlaySFX("Bow");
         int dmg = GetCurrentDamage();
         int projCount = GetCurrentProjectileCount();
 

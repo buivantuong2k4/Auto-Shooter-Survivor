@@ -138,6 +138,8 @@ public class KnifeWeapon : MonoBehaviour
     // ====== BẮN ĐẠN ======
     void Fire()
     {
+        AudioManager.Instance.PlaySFX("Knife");
+
         int dmg = GetCurrentDamage();
         int projCount = GetCurrentProjectileCount();
 
