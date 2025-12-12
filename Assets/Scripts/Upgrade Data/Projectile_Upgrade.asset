@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead11669232759a41b3d1411384da037, type: 3}
   m_Name: Projectile_Upgrade
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeData
-  displayName: 
+  displayName: Projectile
   description: 
   icon: {fileID: 9000870010386316525, guid: 07cee60cf0d7c814bad249e23cbaed29, type: 3}
   type: 4

@@ -41,8 +41,6 @@ public class PlayerLevel : MonoBehaviour
         LevelUpManager.Instance.ShowLevelUp();
         xpToNextLevel = CalculateXPForLevel(level);
 
-        Debug.Log("LEVEL UP! New Level: " + level + "  Next XP: " + xpToNextLevel);
-
         if (OnLevelUp != null)
             OnLevelUp(level);
     }

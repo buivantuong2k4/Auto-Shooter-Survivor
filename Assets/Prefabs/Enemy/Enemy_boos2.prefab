@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBoss2
   moveSpeed: 6
-  maxHP: 1
+  maxHP: 3000
   attackCooldown: 6
   attackRange: 5
   bulletPrefab: {fileID: 4321560292042289765, guid: 94c365ab6a5e24e4b8ba6307c36f4257, type: 3}

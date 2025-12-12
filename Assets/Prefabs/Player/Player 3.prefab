@@ -369,16 +369,16 @@ MonoBehaviour:
   playerStats: {fileID: 7252497322858827341}
   firePoint: {fileID: 4624719145212312717}
   bulletPrefab: {fileID: 2944516281596723662, guid: 341221572f30dab41983f82891199124, type: 3}
-  baseDamage: 5
+  baseDamage: 3
   baseProjectile: 1
   baseFireRate: 0.8
   damagePerGlobalLevel: 10
   projectilePerGlobalLevel: 1
   fireRatePerGlobalLevel: 0.1
-  level2_DamageBonus: 5
+  level2_DamageBonus: 2
   level3_FireRateBonus: 0.3
   level4_ProjectileBonus: 1
-  level5_DamageBonus: 10
+  level5_DamageBonus: 6
   unlocked: 0
   weaponLevel: 0
 --- !u!114 &-5906834358187950741
@@ -423,16 +423,16 @@ MonoBehaviour:
   playerStats: {fileID: 7252497322858827341}
   firePoint: {fileID: 4624719145212312717}
   bulletPrefab: {fileID: 2944516281596723662, guid: 48be3a35ac7dba646813f0f132a02b60, type: 3}
-  baseDamage: 10
+  baseDamage: 5
   baseProjectile: 1
   baseFireRate: 0.3
-  damagePerGlobalLevel: 5
+  damagePerGlobalLevel: 2
   projectilePerGlobalLevel: 0.5
   fireRatePerGlobalLevel: 0.1
   level2_DamageBonus: 5
   level3_FireRateBonus: 0.3
   level4_ProjectileBonus: 1
-  level5_DamageBonus: 10
+  level5_DamageBonus: 5
   unlocked: 1
   weaponLevel: 1
 --- !u!114 &7728891483207317088
@@ -480,15 +480,15 @@ MonoBehaviour:
   playerStats: {fileID: 7252497322858827341}
   firePoint: {fileID: 4624719145212312717}
   bulletPrefab: {fileID: 2944516281596723662, guid: ecb38499d407f6543abee28daba22f50, type: 3}
-  baseDamage: 10
+  baseDamage: 15
   baseProjectile: 1
-  baseFireRate: 0.5
+  baseFireRate: 0.8
   damagePerGlobalLevel: 10
   projectilePerGlobalLevel: 0.5
   fireRatePerGlobalLevel: 0.2
   level2_DamageBonus: 5
   level3_FireRateBonus: 0.3
-  level4_ProjectileBonus: 2
+  level4_ProjectileBonus: 1
   level5_DamageBonus: 10
   unlocked: 0
   weaponLevel: 0

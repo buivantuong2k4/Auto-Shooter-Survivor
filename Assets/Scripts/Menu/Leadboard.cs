@@ -79,7 +79,7 @@ public class Leadboard : MonoBehaviour
 
         if (highScores.Count == 0)
         {
-            leaderboardText.text = "Leaderboard\n\nChưa có điểm cao nào!";
+            leaderboardText.text = "=== LEADERBOARD ===\n\nChưa có điểm cao nào!";
             return;
         }
 

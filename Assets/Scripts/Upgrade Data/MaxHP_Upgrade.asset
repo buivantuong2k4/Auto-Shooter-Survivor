@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead11669232759a41b3d1411384da037, type: 3}
   m_Name: MaxHP_Upgrade
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeData
-  displayName: 
+  displayName: Hp
   description: 
   icon: {fileID: 5082443193233175858, guid: 4fe11a1bb8b808744b6da176c4796a43, type: 3}
   type: 0

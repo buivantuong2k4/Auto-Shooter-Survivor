@@ -174,7 +174,7 @@ public class LevelUpManager : MonoBehaviour
         return result;
     }
 
-    int GetCurrentLevel(UpgradeType type)
+    public int GetCurrentLevel(UpgradeType type)
     {
         switch (type)
         {
@@ -201,8 +201,6 @@ public class LevelUpManager : MonoBehaviour
     //==================================================================
     void ApplyUpgrade(UpgradeData data)
     {
-        Debug.Log("ApplyUpgrade: " + data.type);
-
         switch (data.type)
         {
             // ----- STATS -----

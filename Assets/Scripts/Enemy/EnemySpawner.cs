@@ -81,11 +81,11 @@ public class EnemySpawner : MonoBehaviour
     void UpdateNormalSpawnInterval(float gameTime)
     {
         // Đặt spawn interval theo thời gian game
-        if (gameTime < 240f)
+        if (gameTime < 180f)  // Phút 0-3: Easy
             currentNormalSpawnInterval = easySpawnInterval;
-        else if (gameTime < 480f)
+        else if (gameTime < 360f)  // Phút 3-6: Normal/Medium
             currentNormalSpawnInterval = normalSpawnInterval;
-        else
+        else  // Phút 6+: Hard
             currentNormalSpawnInterval = hardSpawnInterval;
     }
 
@@ -95,16 +95,16 @@ public class EnemySpawner : MonoBehaviour
 
         GameObject prefabToSpawn = null;
 
-        if (gameTime < 240f)
+        if (gameTime < 180f)  // Phút 0-3: Easy only
         {
             if (totalNormal >= maxEasyEnemies) return;
             prefabToSpawn = GetRandomFromArray(easyEnemies);
         }
-        else if (gameTime < 480f)
+        else if (gameTime < 360f)  // Phút 3-6: Normal + Easy mix
         {
             if (totalNormal >= maxNormalEnemies) return;
 
-            if (gameTime < 300f)
+            if (gameTime < 300f)  // Phút 3-5: Mix easy and normal
             {
                 float r = Random.value;
                 if (r < 0.6f)
@@ -112,12 +112,12 @@ public class EnemySpawner : MonoBehaviour
                 else
                     prefabToSpawn = GetRandomFromArray(easyEnemies);
             }
-            else
+            else  // Phút 5-6: Mostly normal
             {
                 prefabToSpawn = GetRandomFromArray(normalEnemies);
             }
         }
-        else
+        else  // Phút 6+: Hard + Normal mix
         {
             if (totalNormal >= maxHardEnemies) return;
 

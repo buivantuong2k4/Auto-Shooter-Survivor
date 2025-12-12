@@ -40,18 +40,26 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        // Ví dụ: Tự động chạy nhạc nền tên "Theme" khi vào game
-        PlayMusic("Theme");
+        PlayMusic("Nen");
     }
 
     // Hàm gọi nhạc nền
     public void PlayMusic(string name)
     {
+        if (musicSource == null)
+        {
+            return;
+        }
+
+        if (musicSounds == null || musicSounds.Length == 0)
+        {
+            return;
+        }
+
         Sound s = Array.Find(musicSounds, x => x.name == name);
 
         if (s == null)
         {
-            Debug.LogWarning("Không tìm thấy nhạc nền: " + name);
             return;
         }
 
@@ -68,11 +76,45 @@ public class AudioManager : MonoBehaviour
 
         if (s == null)
         {
-            Debug.LogWarning("Không tìm thấy SFX: " + name);
             return;
         }
 
         // PlayOneShot cho phép nhiều âm thanh đè lên nhau
         sfxSource.PlayOneShot(s.clip, s.volume);
+    }
+
+    // ===== FUNCTIONS FOR UI EVENTS =====
+    public void SetMusicState(bool isOn)
+    {
+        if (musicSource != null)
+        {
+            if (isOn)
+            {
+                musicSource.enabled = true;
+                PlayMusic("Nen");
+            }
+            else
+            {
+                musicSource.enabled = false;
+            }
+        }
+    }
+
+    public void SetSFXState(bool isOn)
+    {
+        if (sfxSource != null)
+        {
+            sfxSource.enabled = isOn;
+        }
+    }
+
+    public bool IsMusicOn()
+    {
+        return musicSource != null && musicSource.enabled;
+    }
+
+    public bool IsSFXOn()
+    {
+        return sfxSource != null && sfxSource.enabled;
     }
 }

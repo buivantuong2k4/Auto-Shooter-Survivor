@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead11669232759a41b3d1411384da037, type: 3}
   m_Name: SwordWeapon_Upgrade
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeData
-  displayName: 
+  displayName: Sword
   description: 
   icon: {fileID: 1055069836120340120, guid: 85f41cc8c9e1a8840b3ad9b761fa8946, type: 3}
   type: 9

@@ -269,7 +269,7 @@ MonoBehaviour:
   attackCooldown: 0.5
   xpOrbPrefab: {fileID: 7162209361196343287, guid: 1ed1c5df2b7d0c847835e51b97fff913, type: 3}
   deathDestroyDelay: 0.8
-  dropRate: 1
+  dropRate: 0.8
   xpReward: 1
 --- !u!95 &5897806420232230831
 Animator:

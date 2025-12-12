@@ -264,13 +264,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   moveSpeed: 5
-  maxHP: 100
+  maxHP: 150
   attackDamage: 20
   attackCooldown: 0.8
-  xpOrbPrefab: {fileID: 7162209361196343287, guid: 1ed1c5df2b7d0c847835e51b97fff913, type: 3}
+  xpOrbPrefab: {fileID: 7162209361196343287, guid: 670bb82295d9ba14e874c4a30246223e, type: 3}
   deathDestroyDelay: 0.8
   dropRate: 0.6
-  xpReward: 8
+  xpReward: 15
 --- !u!95 &5887563561264428733
 Animator:
   serializedVersion: 7

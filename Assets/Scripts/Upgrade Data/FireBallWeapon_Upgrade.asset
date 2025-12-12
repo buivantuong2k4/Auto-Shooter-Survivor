@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead11669232759a41b3d1411384da037, type: 3}
   m_Name: FireBallWeapon_Upgrade
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeData
-  displayName: 
+  displayName: Fire Ball
   description: 
   icon: {fileID: 36871899152136924, guid: d2ad4a13865a2a941a98ed51b0a3c856, type: 3}
   type: 6

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead11669232759a41b3d1411384da037, type: 3}
   m_Name: Damage_Upgrade
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeData
-  displayName: 
+  displayName: Damge
   description: 
   icon: {fileID: 2810984803788316387, guid: d8bfeffe41d1b2f4e8d46bc2e599ea04, type: 3}
   type: 2

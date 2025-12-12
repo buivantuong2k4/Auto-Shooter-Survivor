@@ -17,22 +17,14 @@ public class LevelUpOptionButton : MonoBehaviour
 
         if (data == null)
         {
-            Debug.LogError("LevelUpOptionButton.Setup: data is null!");
             return;
         }
-
-        // Debug để kiểm tra
-        Debug.Log($"Setup button: {data.displayName}, Icon: {(data.icon != null ? "YES" : "NO")}");
 
         // Gán text
         if (optionText != null)
         {
-            optionText.text = data.displayName;
-            Debug.Log($"Text set to: {data.displayName}");
-        }
-        else
-        {
-            Debug.LogWarning("optionText is not assigned!");
+            int currentLvl = manager.GetCurrentLevel(data.type);
+            optionText.text = $"{data.displayName} (Lv.{currentLvl})";
         }
 
         // Gán icon từ UpgradeData nếu có
@@ -41,16 +33,7 @@ public class LevelUpOptionButton : MonoBehaviour
             if (data.icon != null)
             {
                 iconImage.sprite = data.icon;
-                Debug.Log($"Icon set successfully!");
             }
-            else
-            {
-                Debug.LogWarning($"UpgradeData '{data.displayName}' has no icon assigned!");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("iconImage is not assigned on button!");
         }
     }
 
