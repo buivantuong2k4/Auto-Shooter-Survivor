@@ -35,11 +35,23 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Enemy enemy = other.GetComponent<Enemy>();
-        if (enemy != null)
+        if (other.CompareTag("Enemy"))   // kiểm tra tag
         {
-            enemy.TakeDamage(damage);
-            Destroy(gameObject);
+            Enemy enemy = other.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);
+                Destroy(gameObject);
+            }
+        }
+        else if (other.CompareTag("EnemyBoss"))   // kiểm tra tag
+        {
+            EnemyBoss enemyboss = other.GetComponent<EnemyBoss>();
+            if (enemyboss != null)
+            {
+                enemyboss.TakeDamage(damage);
+                Destroy(gameObject);
+            }
         }
     }
 }
