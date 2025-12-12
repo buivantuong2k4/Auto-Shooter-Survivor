@@ -36,6 +36,15 @@ public class Arrow : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        else if (other.CompareTag("EnemyBoss"))   // kiểm tra tag
+        {
+            EnemyBoss enemyboss = other.GetComponent<EnemyBoss>();
+            if (enemyboss != null)
+            {
+                enemyboss.TakeDamage(damage);
+                Destroy(gameObject);
+            }
+        }
     }
 }
 

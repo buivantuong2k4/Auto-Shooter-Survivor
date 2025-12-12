@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -6,6 +7,12 @@ public class PlayerHealth : MonoBehaviour
 
     private float currentHP;
     private float maxHP;
+    private PlayerAnimationController animController;
+
+    void Awake()
+    {
+        animController = GetComponent<PlayerAnimationController>();
+    }
 
     private float healTimer = 0f;
     private const float HEAL_INTERVAL = 1f;  // Hồi phục mỗi 1 giây
@@ -14,6 +21,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         stats = GetComponent<PlayerStats>();
+
 
         if (stats == null)
         {
@@ -68,6 +76,9 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
+
+        AudioManager.Instance.PlaySFX("PlayerDie");
+        animController.PlayDeath();
         Debug.Log("PLAYER DEAD - GAME OVER");
 
         // Tìm EndMenu và gọi Show để hiển thị end menu

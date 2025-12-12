@@ -10,6 +10,7 @@ public class XPOrb : MonoBehaviour
         PlayerLevel playerLevel = other.GetComponent<PlayerLevel>();
         if (playerLevel != null)
         {
+            AudioManager.Instance.PlaySFX("XP");
             playerLevel.AddXP(xpValue);
             Destroy(gameObject);
         }
