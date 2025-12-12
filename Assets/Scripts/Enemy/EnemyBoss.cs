@@ -25,6 +25,7 @@ public class EnemyBoss : MonoBehaviour
     [Header("Drop")]
     public GameObject xpOrbPrefab;
     public float deathDestroyDelay = 0.8f;
+    public int xpReward = 5;      // kinh nghiệm khi giết boss
 
     private int currentHP;
     private Transform player;
@@ -41,10 +42,7 @@ public class EnemyBoss : MonoBehaviour
     {
         animController = GetComponent<EnemyAnimationController>();
         rb = GetComponent<Rigidbody2D>();
-    }
 
-    void Start()
-    {
         currentHP = maxHP;
 
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
@@ -152,8 +150,6 @@ public class EnemyBoss : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);  // Quay phải
     }
 
-    // Trong script EnemyBoss.cs
-
     void TryShoot()
     {
         if (attackTimer > 0f) return;
@@ -231,6 +227,13 @@ public class EnemyBoss : MonoBehaviour
     {
         if (isDead) return;
         isDead = true;
+
+        // Cộng kinh nghiệm cho player
+        PlayerLevel playerLevel = FindFirstObjectByType<PlayerLevel>();
+        if (playerLevel != null)
+        {
+            playerLevel.AddXP(xpReward);
+        }
 
         rb.linearVelocity = Vector2.zero;
         animController.SetRunning(false);

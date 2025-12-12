@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3548590351686038769}
   - component: {fileID: 2724809766422235435}
   - component: {fileID: 606638978460377967}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 'AttackRange '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 2178045315259117886}
   - component: {fileID: 5887563561264428733}
   - component: {fileID: 6061354989879535939}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hard_Enemy_Mushroom
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -269,7 +269,8 @@ MonoBehaviour:
   attackCooldown: 2
   xpOrbPrefab: {fileID: 7162209361196343287, guid: 1ed1c5df2b7d0c847835e51b97fff913, type: 3}
   deathDestroyDelay: 0.8
-  dropRate: 1
+  dropRate: 0.6
+  xpReward: 5
 --- !u!95 &5887563561264428733
 Animator:
   serializedVersion: 7

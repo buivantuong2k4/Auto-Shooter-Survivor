@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3279883460726747677}
   - component: {fileID: 8723399643373253129}
   - component: {fileID: 6910560311219517190}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 'AttackRange '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3973730183248730537}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Firepoin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,8 +126,8 @@ GameObject:
   - component: {fileID: 2150790442289677266}
   - component: {fileID: 6786531836841094398}
   - component: {fileID: 7774121946871366085}
-  - component: {fileID: 1263135875760536752}
-  m_Layer: 0
+  - component: {fileID: -3674921799511698267}
+  m_Layer: 6
   m_Name: Enemy_boos2
   m_TagString: EnemyBoss
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ Transform:
   m_GameObject: {fileID: 7924319016146445538}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 271.725, y: 98.61438, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -200,15 +200,15 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 4723107735738678597, guid: 1d1f3b118849ced4995f6e3a13bbbd53, type: 3}
+  m_Sprite: {fileID: 4723107735738678597, guid: c872f3d29e652b24c97c26d665f8fb0a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.024, y: 1.024}
+  m_Size: {x: 0.58, y: 1.05}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!50 &2309926506644015212
 Rigidbody2D:
@@ -271,17 +271,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.08, y: -0.19}
+  m_Offset: {x: -0.09942341, y: -0.49218667}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.85, y: 1.425}
-    newSize: {x: 1.024, y: 1.024}
+    oldSize: {x: 8.333333, y: 8.333333}
+    newSize: {x: 0.58, y: 1.05}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.1479449, y: 1.2630138}
+  m_Size: {x: 1.5067917, y: 1.867387}
   m_EdgeRadius: 0
 --- !u!95 &6786531836841094398
 Animator:
@@ -293,7 +293,7 @@ Animator:
   m_GameObject: {fileID: 7924319016146445538}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: cda77a6516e3edb4a8b0f6ed89dc9b02, type: 2}
+  m_Controller: {fileID: 9100000, guid: 965d8a433ce7b914fb3a36db32b65122, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc66eaf353f2dfe4dba24e58d27d5c80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimationController
---- !u!114 &1263135875760536752
+--- !u!114 &-3674921799511698267
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -326,18 +326,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 7924319016146445538}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adf3e889e6d23e048809b047562b287a, type: 3}
+  m_Script: {fileID: 11500000, guid: 818b3f8b1f219b44d8ce30485f9a55e8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyBoss
-  moveSpeed: 3
-  maxHP: 20
-  attackCooldown: 1.5
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyBoss2
+  moveSpeed: 6
+  maxHP: 1500
+  attackCooldown: 6
   attackRange: 5
-  bulletPrefab: {fileID: 2944516281596723662, guid: a0d4bacbc770a8646b21eef4303e06c0, type: 3}
+  bulletPrefab: {fileID: 4321560292042289765, guid: 94c365ab6a5e24e4b8ba6307c36f4257, type: 3}
   firePoint: {fileID: 3973730183248730537}
-  burstCount: 5
-  delayBetweenBursts: 0.15
-  bulletPerBurst: 3
-  spreadAngle: 40
-  xpOrbPrefab: {fileID: 7162209361196343287, guid: cfae549f399d9d34e837c93d307bc7af, type: 3}
+  burstCount: 3
+  delayBetweenBursts: 0.5
+  bulletPerBurst: 5
+  spreadAngle: 140
+  enemyPrefabs:
+  - {fileID: 2297350988256105226, guid: dc7a46f47443aff40b17cfae3377ddb4, type: 3}
+  - {fileID: 3307120163879111234, guid: d95bd7f1e4b95b246968a732fa8a5303, type: 3}
+  - {fileID: 7150563147510171426, guid: a6cf9dd26338d444bae85d64e5e0d586, type: 3}
+  - {fileID: 7447055204018397696, guid: 523e8629cd029794588ed3fdefc51a4c, type: 3}
+  summonCount: 5
+  summonRadius: 3
+  xpOrbPrefab: {fileID: 7162209361196343287, guid: 28adec88419e8b941a3c9888ec6a3f4e, type: 3}
   deathDestroyDelay: 1

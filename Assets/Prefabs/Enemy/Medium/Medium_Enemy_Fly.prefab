@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5631681033686582867}
   - component: {fileID: 7228133183750870151}
   - component: {fileID: 7419849597194508407}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 'AttackRange '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 5736660550612820063}
   - component: {fileID: 5897806420232230831}
   - component: {fileID: 6732969983676630958}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Medium_Enemy_Fly
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -269,7 +269,8 @@ MonoBehaviour:
   attackCooldown: 2
   xpOrbPrefab: {fileID: 7162209361196343287, guid: 1ed1c5df2b7d0c847835e51b97fff913, type: 3}
   deathDestroyDelay: 0.8
-  dropRate: 1
+  dropRate: 0.5
+  xpReward: 3
 --- !u!95 &5897806420232230831
 Animator:
   serializedVersion: 7

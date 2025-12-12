@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3358483268884286443}
   - component: {fileID: 3125651785202046873}
   - component: {fileID: 1131974602162813289}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Medium_Enemy_gb
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -188,7 +188,8 @@ MonoBehaviour:
   attackCooldown: 2
   xpOrbPrefab: {fileID: 7162209361196343287, guid: 1ed1c5df2b7d0c847835e51b97fff913, type: 3}
   deathDestroyDelay: 0.8
-  dropRate: 1
+  dropRate: 0.5
+  xpReward: 3
 --- !u!95 &3125651785202046873
 Animator:
   serializedVersion: 7
@@ -234,7 +235,7 @@ GameObject:
   - component: {fileID: 5231633907668336648}
   - component: {fileID: 2030873820954869335}
   - component: {fileID: 8276539548420458253}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 'AttackRange '
   m_TagString: Untagged
   m_Icon: {fileID: 0}

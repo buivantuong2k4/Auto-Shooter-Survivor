@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     [Header("XP Drop Settings")]
     [Range(0f, 1f)]
     public float dropRate = 1f;   // tỉ lệ rơi xp (1 = 100%)
+    public int xpReward = 1;      // kinh nghiệm khi giết quái
 
     private int currentHP;
     private Transform player;
@@ -41,6 +42,9 @@ public class Enemy : MonoBehaviour
     {
         currentHP = maxHP;
         TryFindPlayer();
+
+        // Tự động destroy sau 40s nếu không bị giết
+        Destroy(gameObject, 40f);
     }
 
     void Update()
@@ -101,9 +105,9 @@ public class Enemy : MonoBehaviour
         }
 
         // flip trái/phải (nếu là side-view)
-        if (dir.x < 0)
+        if (player.position.x < transform.position.x)
             transform.localScale = new Vector3(-1, 1, 1);
-        else if (dir.x > 0)
+        else
             transform.localScale = new Vector3(1, 1, 1);
     }
 
@@ -149,6 +153,13 @@ public class Enemy : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
+        // Cộng kinh nghiệm cho player
+        PlayerLevel playerLevel = FindFirstObjectByType<PlayerLevel>();
+        if (playerLevel != null)
+        {
+            playerLevel.AddXP(xpReward);
+        }
+
         // dừng di chuyển
         rb.linearVelocity = Vector2.zero;
         animController.SetRunning(false);
@@ -170,15 +181,13 @@ public class Enemy : MonoBehaviour
     {
         // ⏱ chờ đúng thời gian deathDestroyDelay (ví dụ 0.8s)
         yield return new WaitForSeconds(deathDestroyDelay);
-
+        Destroy(gameObject);
         // 🎁 drop orb theo tỉ lệ dropRate
         if (xpOrbPrefab != null && Random.value <= dropRate)
         {
             Instantiate(xpOrbPrefab, transform.position, Quaternion.identity);
         }
 
-        // xoá enemy sau khi anim chết chạy xong + drop xong
-        Destroy(gameObject);
     }
 
     // Hàm này được gọi từ EnemyAttackRange (child)

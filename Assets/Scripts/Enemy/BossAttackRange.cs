@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class BossAttackRange : MonoBehaviour
 {
-    // Sửa kiểu dữ liệu từ Enemy thành EnemyBoss
     private EnemyBoss boss;
+    private EnemyBoss2 boss2;
 
     void Awake()
     {
-        // Tìm component EnemyBoss ở object cha thay vì Enemy
         boss = GetComponentInParent<EnemyBoss>();
+        boss2 = GetComponentInParent<EnemyBoss2>();
 
-        if (boss == null)
+        if (boss == null && boss2 == null)
         {
-            Debug.LogError("BossAttackRange: Không tìm thấy EnemyBoss trên parent! Hãy chắc chắn script EnemyBoss đã được gắn vào.");
+            Debug.LogError("BossAttackRange: Không tìm thấy EnemyBoss hoặc EnemyBoss2 trên parent!");
         }
     }
 
@@ -20,14 +20,13 @@ public class BossAttackRange : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
-        // Nếu không tìm thấy boss thì thôi, tránh lỗi
-        if (boss == null) return;
-
         PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
-            // Gọi hàm bên EnemyBoss
-            boss.SetPlayerInRange(playerHealth);
+            if (boss != null)
+                boss.SetPlayerInRange(playerHealth);
+            if (boss2 != null)
+                boss2.SetPlayerInRange(playerHealth);
         }
     }
 
@@ -35,13 +34,13 @@ public class BossAttackRange : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
-        if (boss == null) return;
-
         PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
-            // Gọi hàm bên EnemyBoss
-            boss.ClearPlayerInRange(playerHealth);
+            if (boss != null)
+                boss.ClearPlayerInRange(playerHealth);
+            if (boss2 != null)
+                boss2.ClearPlayerInRange(playerHealth);
         }
     }
 }

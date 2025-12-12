@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5133118526800611549}
   - component: {fileID: 6257718761946555210}
   - component: {fileID: 3375664282174537224}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 'AttackRange '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 1962636152609134391}
   - component: {fileID: 7223556617179774594}
   - component: {fileID: 6581923779939956348}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hard_Enemy_Skeleton
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -269,7 +269,8 @@ MonoBehaviour:
   attackCooldown: 1
   xpOrbPrefab: {fileID: 7162209361196343287, guid: 1ed1c5df2b7d0c847835e51b97fff913, type: 3}
   deathDestroyDelay: 0.8
-  dropRate: 1
+  dropRate: 0.6
+  xpReward: 5
 --- !u!95 &7223556617179774594
 Animator:
   serializedVersion: 7

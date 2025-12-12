@@ -33,7 +33,7 @@ public class FireBall : MonoBehaviour
             if (enemy != null)
             {
                 enemy.TakeDamage(damage);
-                Destroy(gameObject);
+
             }
         }
         else if (other.CompareTag("EnemyBoss"))   // kiểm tra tag
@@ -42,7 +42,16 @@ public class FireBall : MonoBehaviour
             if (enemyboss != null)
             {
                 enemyboss.TakeDamage(damage);
-                Destroy(gameObject);
+
+            }
+            else
+            {
+                EnemyBoss2 enemyboss2 = other.GetComponent<EnemyBoss2>();
+                if (enemyboss2 != null)
+                {
+                    enemyboss2.TakeDamage(damage);
+
+                }
             }
         }
     }

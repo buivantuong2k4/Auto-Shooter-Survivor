@@ -27,7 +27,17 @@ public class Shuriken : MonoBehaviour
             {
                 AudioManager.Instance.PlaySFX("Shuriken");
                 enemyboss.TakeDamage(damage);
-                Destroy(gameObject);
+
+            }
+            else
+            {
+                EnemyBoss2 enemyboss2 = other.GetComponent<EnemyBoss2>();
+                if (enemyboss2 != null)
+                {
+                    AudioManager.Instance.PlaySFX("Shuriken");
+                    enemyboss2.TakeDamage(damage);
+
+                }
             }
         }
     }

@@ -6,6 +6,7 @@ public class EnemyAnimationController : MonoBehaviour
 
     private static readonly int IsRunningHash = Animator.StringToHash("IsRunning");
     private static readonly int AttackHash = Animator.StringToHash("Attack");
+    private static readonly int AttackHash2 = Animator.StringToHash("Attack2");
     private static readonly int DieHash = Animator.StringToHash("Die");
 
     void Awake()
@@ -23,6 +24,10 @@ public class EnemyAnimationController : MonoBehaviour
     public void PlayAttack()
     {
         anim.SetTrigger(AttackHash);
+    }
+    public void PlayAttack2()
+    {
+        anim.SetTrigger(AttackHash2);
     }
 
     public void PlayDeath()
