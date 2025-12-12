@@ -337,7 +337,7 @@ MonoBehaviour:
   hpPerLevel: 20
   healthLevel: 0
   baseMoveSpeed: 5
-  moveSpeedPerLevel: 1
+  moveSpeedPerLevel: 0.4
   speedLevel: 0
   damageLevel: 0
   fireRateLevel: 0

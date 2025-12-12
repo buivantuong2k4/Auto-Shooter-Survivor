@@ -121,13 +121,13 @@ public class Enemy : MonoBehaviour
         animController.PlayAttack();
         attackTimer = attackCooldown;
 
-        // chạy coroutine để delay damage 0.3s
+
         attackCoroutine = StartCoroutine(AttackDelayRoutine());
     }
 
     IEnumerator AttackDelayRoutine()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.5f);
 
         // kiểm tra nếu vẫn còn chạm player thì mới deal damage
         if (targetPlayerHealth != null)
@@ -173,16 +173,15 @@ public class Enemy : MonoBehaviour
             col.enabled = false;
         }
 
-        // chạy quy trình death (delay → drop → destroy)
+
         StartCoroutine(DeathRoutine());
     }
 
     IEnumerator DeathRoutine()
     {
-        // ⏱ chờ đúng thời gian deathDestroyDelay (ví dụ 0.8s)
         yield return new WaitForSeconds(deathDestroyDelay);
         Destroy(gameObject);
-        // 🎁 drop orb theo tỉ lệ dropRate
+
         if (xpOrbPrefab != null && Random.value <= dropRate)
         {
             Instantiate(xpOrbPrefab, transform.position, Quaternion.identity);

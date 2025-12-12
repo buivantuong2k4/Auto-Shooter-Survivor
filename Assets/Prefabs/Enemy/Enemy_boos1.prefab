@@ -298,8 +298,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adf3e889e6d23e048809b047562b287a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBoss
-  moveSpeed: 4
-  maxHP: 800
+  moveSpeed: 6
+  maxHP: 1000
   attackCooldown: 6
   attackRange: 5
   bulletPrefab: {fileID: 2944516281596723662, guid: a0d4bacbc770a8646b21eef4303e06c0, type: 3}
@@ -310,7 +310,7 @@ MonoBehaviour:
   spreadAngle: 60
   xpOrbPrefab: {fileID: 7162209361196343287, guid: 28adec88419e8b941a3c9888ec6a3f4e, type: 3}
   deathDestroyDelay: 1
-  xpReward: 5
+  xpReward: 100
 --- !u!1 &7489358509809803818
 GameObject:
   m_ObjectHideFlags: 0

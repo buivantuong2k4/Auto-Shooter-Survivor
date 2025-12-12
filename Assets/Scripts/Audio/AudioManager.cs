@@ -40,7 +40,7 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        PlayMusic("Nen");
+        PlayMusic("Theme");
     }
 
     // Hàm gọi nhạc nền

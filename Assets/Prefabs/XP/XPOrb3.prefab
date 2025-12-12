@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5aa09e8244c6ae41836e6ed6059d0e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::XPOrb
-  xpValue: 100
+  xpValue: 50
 --- !u!95 &3065409859115453250
 Animator:
   serializedVersion: 7

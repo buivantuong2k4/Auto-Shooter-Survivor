@@ -329,8 +329,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818b3f8b1f219b44d8ce30485f9a55e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBoss2
-  moveSpeed: 6
-  maxHP: 3000
+  moveSpeed: 7
+  maxHP: 5000
   attackCooldown: 6
   attackRange: 5
   bulletPrefab: {fileID: 4321560292042289765, guid: 94c365ab6a5e24e4b8ba6307c36f4257, type: 3}
@@ -344,7 +344,11 @@ MonoBehaviour:
   - {fileID: 3307120163879111234, guid: d95bd7f1e4b95b246968a732fa8a5303, type: 3}
   - {fileID: 7150563147510171426, guid: a6cf9dd26338d444bae85d64e5e0d586, type: 3}
   - {fileID: 7447055204018397696, guid: 523e8629cd029794588ed3fdefc51a4c, type: 3}
-  summonCount: 5
-  summonRadius: 3
+  - {fileID: 2297350988256105226, guid: e2b9e1e13022fad4d8b6142bcf6abe21, type: 3}
+  - {fileID: 3307120163879111234, guid: 7c49e7aa9c2063b448a1b45768d5a2eb, type: 3}
+  - {fileID: 7150563147510171426, guid: 43a23c35aa5c19f4ba8b07930f54a247, type: 3}
+  - {fileID: 7447055204018397696, guid: 2fb397d7899c04b4f8da239f0842354a, type: 3}
+  summonCount: 8
+  summonRadius: 4
   xpOrbPrefab: {fileID: 7162209361196343287, guid: 28adec88419e8b941a3c9888ec6a3f4e, type: 3}
   deathDestroyDelay: 1

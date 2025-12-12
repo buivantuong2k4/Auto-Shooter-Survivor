@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DebugMenu : MonoBehaviour
 {
-    public GameObject debugMenuPanel;  // Kéo menu debug panel vào đây
+
     private Timecount timeCounter;
 
     void Awake()
@@ -10,15 +10,6 @@ public class DebugMenu : MonoBehaviour
         timeCounter = FindFirstObjectByType<Timecount>();
     }
 
-    void Start()
-    {
-        // Kiểm tra giá trị từ MainMenu và bật/tắt menu debug
-        bool shouldShowDebugMenu = GetMenuVisible();
-        if (debugMenuPanel != null)
-        {
-            debugMenuPanel.SetActive(shouldShowDebugMenu);
-        }
-    }
 
     public void SetMedium()
     {
@@ -66,15 +57,5 @@ public class DebugMenu : MonoBehaviour
         }
     }
 
-    // ===== MENU VISIBILITY CONTROL =====
-    public void SetMenuVisible(bool isVisible)
-    {
-        PlayerPrefs.SetInt("MenuVisible", isVisible ? 1 : 0);
-        PlayerPrefs.Save();
-    }
 
-    public static bool GetMenuVisible()
-    {
-        return PlayerPrefs.GetInt("MenuVisible", 0) == 1;
-    }
 }

@@ -169,7 +169,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 4723107735738678597, guid: dd7dea4b89b0ea749926d99767775fcf, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.65471697, g: 0.66515195, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -263,14 +263,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6071ac898bf6af446a86b01ae3c0ffc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  moveSpeed: 5
-  maxHP: 150
+  moveSpeed: 4
+  maxHP: 500
   attackDamage: 20
   attackCooldown: 0.8
   xpOrbPrefab: {fileID: 7162209361196343287, guid: 670bb82295d9ba14e874c4a30246223e, type: 3}
   deathDestroyDelay: 0.8
   dropRate: 0.6
-  xpReward: 15
+  xpReward: 30
 --- !u!95 &7223556617179774594
 Animator:
   serializedVersion: 7

@@ -53,11 +53,11 @@ public class PlayerLevel : MonoBehaviour
         }
         else if (lvl >= 10 && lvl < 30)
         {
-            return lvl * 15;
+            return lvl * 20;
         }
         else if (lvl >= 30 && lvl < 50)
         {
-            return lvl * 20;
+            return lvl * 30;
         }
         return 10;
     }

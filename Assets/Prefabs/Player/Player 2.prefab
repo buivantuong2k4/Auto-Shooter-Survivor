@@ -306,7 +306,7 @@ MonoBehaviour:
   hpPerLevel: 20
   healthLevel: 0
   baseMoveSpeed: 5
-  moveSpeedPerLevel: 1
+  moveSpeedPerLevel: 0.4
   speedLevel: 0
   damageLevel: 0
   fireRateLevel: 0
@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BowWeapon
   playerStats: {fileID: 2200994539507705035}
-  firePoint: {fileID: 3936341816686498495, guid: 17cb853b92b0840449f368aef813527b, type: 3}
+  firePoint: {fileID: 4764966402603326400}
   bulletPrefab: {fileID: 2944516281596723662, guid: 97b1df5af6788f641a6c104ff0d0bbc1, type: 3}
   baseDamage: 5
   baseProjectile: 1

@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6071ac898bf6af446a86b01ae3c0ffc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  moveSpeed: 5
+  moveSpeed: 4
   maxHP: 10
   attackDamage: 5
   attackCooldown: 0.5

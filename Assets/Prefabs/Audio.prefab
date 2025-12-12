@@ -45,9 +45,9 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -174,7 +174,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -268,6 +268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4119938181706885417}
   - component: {fileID: 4812147573794984959}
+  - component: {fileID: 3245297571427408847}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -307,48 +308,62 @@ MonoBehaviour:
   musicSource: {fileID: 1909493792652552755}
   sfxSource: {fileID: 7056301898893531521}
   musicSounds:
-  - name: Nen
+  - name: Theme
     clip: {fileID: 8300000, guid: 1317d133944e5e94390f6e7ff12a8619, type: 3}
-    volume: 1
+    volume: 0.6
     pitch: 1
   sfxSounds:
   - name: Shuriken
     clip: {fileID: 8300000, guid: 1a62d087755b6ce4ebff4cec57e07cd1, type: 3}
-    volume: 1
+    volume: 0.6
     pitch: 0
   - name: Bow
     clip: {fileID: 8300000, guid: e1c12e05aa0bb3c47b372e1fe2e8afa0, type: 3}
-    volume: 1
+    volume: 0.6
     pitch: 0
   - name: Sword
     clip: {fileID: 8300000, guid: 44a6e96f11eea884ab67aeb7868ef015, type: 3}
-    volume: 1
+    volume: 0.6
     pitch: 0
   - name: FireBall
     clip: {fileID: 8300000, guid: 7ee6ea006ceb22045895936392241db7, type: 3}
-    volume: 1
+    volume: 0.6
     pitch: 0
   - name: Knife
     clip: {fileID: 8300000, guid: 021ecfb64bdf6154880f1d73b7966f0e, type: 3}
-    volume: 1
+    volume: 0.6
     pitch: 0
   - name: PlayerHurt
     clip: {fileID: 8300000, guid: 63b18b9a3f9dcbd44ba16714124b0214, type: 3}
-    volume: 1
+    volume: 0.6
     pitch: 0
   - name: XP
     clip: {fileID: 8300000, guid: 01a71baf5e4a43f42b4683b3389c5db5, type: 3}
-    volume: 1
+    volume: 0.6
     pitch: 0
   - name: LevelUp
     clip: {fileID: 8300000, guid: 45096d729134f444b8b33ae474db5f49, type: 3}
-    volume: 1
+    volume: 0
     pitch: 0
   - name: FireBallBoss
     clip: {fileID: 8300000, guid: 95cee7e526335cb43a829b70e127da8f, type: 3}
-    volume: 1
+    volume: 0.6
     pitch: 0
   - name: PlayerDie
     clip: {fileID: 8300000, guid: 24ecf4717128fcc41b1fd18ef4aa6a05, type: 3}
-    volume: 1
+    volume: 0.6
     pitch: 0
+--- !u!114 &3245297571427408847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8643424406506868569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed9f1639aa95a0249837e3758f44f174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioSetup
+  musicToggle: {fileID: 0}
+  sfxToggle: {fileID: 0}

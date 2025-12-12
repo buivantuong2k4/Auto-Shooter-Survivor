@@ -169,7 +169,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 4723107735738678597, guid: 42f7a04f0f7a3a8469da5044693a43d7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6392157, g: 0.9843137, b: 0.9612947, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -270,7 +270,7 @@ MonoBehaviour:
   xpOrbPrefab: {fileID: 7162209361196343287, guid: cfae549f399d9d34e837c93d307bc7af, type: 3}
   deathDestroyDelay: 0.8
   dropRate: 0.8
-  xpReward: 5
+  xpReward: 10
 --- !u!95 &5887563561264428733
 Animator:
   serializedVersion: 7
