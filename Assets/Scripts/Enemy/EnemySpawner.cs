@@ -4,7 +4,8 @@ public class EnemySpawner : MonoBehaviour
 {
     [Header("Common")]
     public float spawnRadius = 8f;
-    public Transform player;   // sẽ tự tìm object có tag "Player"
+    public Transform player;
+    public Timecount timeCounter;
 
     [Header("Normal Enemies")]
     public GameObject[] easyEnemies;
@@ -15,10 +16,10 @@ public class EnemySpawner : MonoBehaviour
     public int maxNormalEnemies = 80;
     public int maxHardEnemies = 100;
 
-    [Header("Spawn Speed by Wave")]
-    public float easyWaveSpawnSpeed = 1f;      // Đợt dễ (tốc độ 1 = baseline)
-    public float normalWaveSpawnSpeed = 1.3f;  // Đợt thường (30% nhanh hơn)
-    public float hardWaveSpawnSpeed = 1.6f;    // Đợt khó (60% nhanh hơn)
+    [Header("Spawn Intervals (seconds between each spawn)")]
+    public float easySpawnInterval = 2f;      // Đợt dễ - mỗi 2s spawn 1 con
+    public float normalSpawnInterval = 1.5f;  // Đợt thường - mỗi 1.5s spawn 1 con
+    public float hardSpawnInterval = 0.8f;    // Đợt khó - mỗi 0.8s spawn 1 con
 
     [Header("Boss")]
     public GameObject boss1Prefab;
@@ -28,7 +29,6 @@ public class EnemySpawner : MonoBehaviour
     public float boss2Time = 10f * 60f;
 
     // --- Runtime state ---
-    private float gameTime = 0f;
     private bool isBossActive = false;
     private bool boss1Spawned = false;
     private bool boss2Spawned = false;
@@ -38,34 +38,34 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        TryFindPlayer();              // 🔥 thử tìm player lúc bắt đầu
+        TryFindPlayer();
         currentNormalSpawnInterval = 1.2f;
     }
 
     void Update()
     {
-        // Nếu player chưa có (VD: spawn chậm hơn EnemySpawner) thì thử tìm lại
+        // Nếu player chưa có thì thử tìm lại
         if (player == null)
         {
             TryFindPlayer();
-            if (player == null) return;   // vẫn chưa có player → chưa spawn gì
+            if (player == null) return;
         }
 
         if (isBossActive)
             return;
 
-        gameTime += Time.deltaTime;
+        float gameTime = timeCounter.GetElapsedTime();
 
-        UpdateNormalSpawnInterval();
+        UpdateNormalSpawnInterval(gameTime);
 
         normalSpawnTimer += Time.deltaTime;
         if (normalSpawnTimer >= currentNormalSpawnInterval)
         {
-            TrySpawnNormalEnemy();
+            TrySpawnNormalEnemy(gameTime);
             normalSpawnTimer = 0f;
         }
 
-        CheckBossSpawn();
+        CheckBossSpawn(gameTime);
     }
 
     // 👇 HÀM MỚI: tự tìm player theo tag
@@ -75,44 +75,21 @@ public class EnemySpawner : MonoBehaviour
         if (playerObj != null)
         {
             player = playerObj.transform;
-            // Debug.Log("EnemySpawner: Found player = " + player.name);
         }
     }
-
     // ----- phần dưới giữ nguyên code của bạn -----
-    void UpdateNormalSpawnInterval()
+    void UpdateNormalSpawnInterval(float gameTime)
     {
-        // Tốc độ base theo thời gian
-        float baseInterval = 1.2f;
-        if (gameTime < 120f)
-            baseInterval = 1.2f;
-        else if (gameTime < 240f)
-            baseInterval = 0.9f;
-        else if (gameTime < 300f)
-            baseInterval = 0.7f;
-        else if (gameTime < 390f)
-            baseInterval = 0.6f;
-        else if (gameTime < 480f)
-            baseInterval = 0.45f;
-        else if (gameTime < 540f)
-            baseInterval = 0.35f;
-        else
-            baseInterval = 0.25f;
-
-        // Áp dụng tốc độ spawn theo từng đợt
-        float spawnSpeedMultiplier = 1f;
-
+        // Đặt spawn interval theo thời gian game
         if (gameTime < 240f)
-            spawnSpeedMultiplier = easyWaveSpawnSpeed;
+            currentNormalSpawnInterval = easySpawnInterval;
         else if (gameTime < 480f)
-            spawnSpeedMultiplier = normalWaveSpawnSpeed;
+            currentNormalSpawnInterval = normalSpawnInterval;
         else
-            spawnSpeedMultiplier = hardWaveSpawnSpeed;
-
-        currentNormalSpawnInterval = baseInterval / spawnSpeedMultiplier;
+            currentNormalSpawnInterval = hardSpawnInterval;
     }
 
-    void TrySpawnNormalEnemy()
+    void TrySpawnNormalEnemy(float gameTime)
     {
         int totalNormal = CountByTag("Enemy");
 
@@ -159,7 +136,7 @@ public class EnemySpawner : MonoBehaviour
         Instantiate(prefabToSpawn, spawnPos, Quaternion.identity);
     }
 
-    void CheckBossSpawn()
+    void CheckBossSpawn(float gameTime)
     {
         if (!boss1Spawned && gameTime >= boss1Time && boss1Prefab != null)
         {
@@ -180,6 +157,12 @@ public class EnemySpawner : MonoBehaviour
     {
         isBossActive = true;
 
+        // Dừng đến khiểm thời gian khi boss xuất hiện
+        if (timeCounter != null)
+        {
+            timeCounter.Stop();
+        }
+
         Vector3 spawnPos = player.position + new Vector3(0f, 5f, 0f);
         GameObject bossObj = Instantiate(bossPrefab, spawnPos, Quaternion.identity);
     }
@@ -187,6 +170,12 @@ public class EnemySpawner : MonoBehaviour
     public void OnBossDied()
     {
         isBossActive = false;
+
+
+        if (timeCounter != null)
+        {
+            timeCounter.Resume();
+        }
     }
 
     GameObject GetRandomFromArray(GameObject[] arr)

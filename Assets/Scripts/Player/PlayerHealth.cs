@@ -83,11 +83,11 @@ public class PlayerHealth : MonoBehaviour
         animController.PlayDeath();
         Debug.Log("PLAYER DEAD - GAME OVER");
 
-        // Tìm EndMenu và gọi Show để hiển thị end menu
+        // Tìm EndMenu và gọi ShowLose để hiển thị end menu với ảnh lose
         EndMenu endMenu = FindFirstObjectByType<EndMenu>();
         if (endMenu != null)
         {
-            endMenu.Show();
+            endMenu.ShowLose();
         }
     }
 

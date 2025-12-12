@@ -288,7 +288,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLevel
   level: 1
   currentXP: 0
-  xpToNextLevel: 20
+  xpToNextLevel: 10
+  totalScore: 0
 --- !u!114 &2200994539507705035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,7 +306,7 @@ MonoBehaviour:
   hpPerLevel: 20
   healthLevel: 0
   baseMoveSpeed: 5
-  moveSpeedPerLevel: 0.5
+  moveSpeedPerLevel: 1
   speedLevel: 0
   damageLevel: 0
   fireRateLevel: 0
@@ -340,7 +341,7 @@ MonoBehaviour:
   baseDamage: 5
   baseProjectile: 1
   baseFireRate: 0.8
-  damagePerGlobalLevel: 20
+  damagePerGlobalLevel: 10
   projectilePerGlobalLevel: 1
   fireRatePerGlobalLevel: 0.1
   level2_DamageBonus: 5
@@ -367,7 +368,7 @@ MonoBehaviour:
   baseDamage: 5
   baseProjectile: 1
   baseFireRate: 1.2
-  damagePerGlobalLevel: 20
+  damagePerGlobalLevel: 10
   projectilePerGlobalLevel: 1
   fireRatePerGlobalLevel: 0.2
   level2_DamageBonus: 5
@@ -391,16 +392,16 @@ MonoBehaviour:
   playerStats: {fileID: 2200994539507705035}
   firePoint: {fileID: 4764966402603326400}
   bulletPrefab: {fileID: 2944516281596723662, guid: 48be3a35ac7dba646813f0f132a02b60, type: 3}
-  baseDamage: 20
+  baseDamage: 10
   baseProjectile: 1
   baseFireRate: 0.3
-  damagePerGlobalLevel: 15
+  damagePerGlobalLevel: 5
   projectilePerGlobalLevel: 0.5
   fireRatePerGlobalLevel: 0.1
-  level2_DamageBonus: 10
+  level2_DamageBonus: 5
   level3_FireRateBonus: 0.3
   level4_ProjectileBonus: 1
-  level5_DamageBonus: 20
+  level5_DamageBonus: 10
   unlocked: 0
   weaponLevel: 0
 --- !u!114 &-8950871968083222800
@@ -425,7 +426,7 @@ MonoBehaviour:
   projectilePerGlobalLevel: 1
   fireRatePerGlobalLevel: 1
   level2_DamageBonus: 5
-  level3_ProjectileBonus: 0.5
+  level3_ProjectileBonus: 1
   level4_ProjectileBonus: 2
   level5_DamageBonus: 10
   unlocked: 0
@@ -451,7 +452,7 @@ MonoBehaviour:
   baseDamage: 10
   baseProjectile: 1
   baseFireRate: 0.5
-  damagePerGlobalLevel: 20
+  damagePerGlobalLevel: 10
   projectilePerGlobalLevel: 0.5
   fireRatePerGlobalLevel: 0.2
   level2_DamageBonus: 5

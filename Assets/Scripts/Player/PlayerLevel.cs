@@ -29,7 +29,7 @@ public class PlayerLevel : MonoBehaviour
         }
     }
 
-    void LevelUp()
+    public void LevelUp()
     {
         // Khóa level tối đa ở 50
         if (level >= 50)

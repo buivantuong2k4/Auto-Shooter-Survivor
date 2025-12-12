@@ -235,6 +235,13 @@ public class EnemyBoss : MonoBehaviour
             playerLevel.AddXP(xpReward);
         }
 
+        // Thông báo cho EnemySpawner boss đã chết
+        EnemySpawner spawner = FindFirstObjectByType<EnemySpawner>();
+        if (spawner != null)
+        {
+            spawner.OnBossDied();
+        }
+
         rb.linearVelocity = Vector2.zero;
         animController.SetRunning(false);
         animController.PlayDeath();

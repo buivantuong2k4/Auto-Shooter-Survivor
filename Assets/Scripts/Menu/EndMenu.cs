@@ -1,12 +1,18 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 
 public class EndMenu : MonoBehaviour
 {
     public GameObject endMenuPanel;
+    public TextMeshProUGUI scoreText;  // Text để hiển thị điểm
+    public RawImage resultImage;       // RawImage hiển thị win/lose
+    public Sprite winSprite;           // Ảnh win
+    public Sprite loseSprite;          // Ảnh lose
 
     void Start()
     {
@@ -23,15 +29,31 @@ public class EndMenu : MonoBehaviour
     // Hiển thị End Menu
     public void Show()
     {
-        StartCoroutine(ShowMenuWithDelay());
-    }
-
-    IEnumerator ShowMenuWithDelay()
-    {
-        yield return new WaitForSecondsRealtime(1f);  // Delay 1 giây 
         Time.timeScale = 0f;
         endMenuPanel.SetActive(true);
         SaveHighScore();
+    }
+
+    // Hiển thị menu với hình win
+    public void ShowWin()
+    {
+        if (resultImage != null && winSprite != null)
+        {
+            resultImage.texture = winSprite.texture;
+            resultImage.gameObject.SetActive(true);
+        }
+        Show();
+    }
+
+    // Hiển thị menu với hình lose
+    public void ShowLose()
+    {
+        if (resultImage != null && loseSprite != null)
+        {
+            resultImage.texture = loseSprite.texture;
+            resultImage.gameObject.SetActive(true);
+        }
+        Show();
     }
 
     // Lưu điểm cao (top 5)
@@ -45,6 +67,12 @@ public class EndMenu : MonoBehaviour
         }
 
         int currentScore = playerLevel.GetTotalScore();
+
+        // Hiển thị điểm hiện tại
+        if (scoreText != null)
+        {
+            scoreText.text = $"Your Score: {currentScore}";
+        }
 
         // Lấy danh sách điểm cao từ PlayerPrefs
         string highScoresString = PlayerPrefs.GetString("HighScores", "");

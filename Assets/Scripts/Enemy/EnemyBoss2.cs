@@ -282,10 +282,21 @@ public class EnemyBoss2 : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
+        // Thông báo cho EnemySpawner boss đã chết
+        EnemySpawner spawner = FindFirstObjectByType<EnemySpawner>();
+        if (spawner != null)
+        {
+            spawner.OnBossDied();
+        }
+
         rb.linearVelocity = Vector2.zero;
         animController.SetRunning(false);
         animController.PlayDeath();
-
+        EndMenu endMenu = FindFirstObjectByType<EndMenu>();
+        if (endMenu != null)
+        {
+            endMenu.ShowWin();
+        }
         foreach (var col in GetComponentsInChildren<Collider2D>())
         {
             col.enabled = false;
@@ -297,6 +308,7 @@ public class EnemyBoss2 : MonoBehaviour
         }
 
         Destroy(gameObject, deathDestroyDelay);
+
     }
 
     // Các hàm này vẫn giữ nguyên để Child Object (AttackRange) gọi vào

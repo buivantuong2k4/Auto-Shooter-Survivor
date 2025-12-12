@@ -298,8 +298,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adf3e889e6d23e048809b047562b287a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBoss
-  moveSpeed: 3
-  maxHP: 500
+  moveSpeed: 4
+  maxHP: 1
   attackCooldown: 6
   attackRange: 5
   bulletPrefab: {fileID: 2944516281596723662, guid: a0d4bacbc770a8646b21eef4303e06c0, type: 3}

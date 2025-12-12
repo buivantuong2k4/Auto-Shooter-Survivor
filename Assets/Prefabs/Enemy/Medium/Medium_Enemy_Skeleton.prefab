@@ -263,9 +263,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6071ac898bf6af446a86b01ae3c0ffc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  moveSpeed: 1
-  maxHP: 15
-  attackDamage: 10
+  moveSpeed: 4
+  maxHP: 50
+  attackDamage: 15
   attackCooldown: 1
   xpOrbPrefab: {fileID: 7162209361196343287, guid: 1ed1c5df2b7d0c847835e51b97fff913, type: 3}
   deathDestroyDelay: 0.8
