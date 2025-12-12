@@ -13,18 +13,18 @@ GameObject:
   - component: {fileID: 608840076674507033}
   - component: {fileID: 3361417496866453746}
   - component: {fileID: 8224797675545039580}
+  - component: {fileID: 933206049589533852}
   - component: {fileID: 6707646910639587765}
-  - component: {fileID: 5750652862467463198}
   - component: {fileID: 2868942147434560974}
   - component: {fileID: 1927635611673191190}
   - component: {fileID: 1288732124423169333}
   - component: {fileID: 2200994539507705035}
-  - component: {fileID: 933206049589533852}
-  - component: {fileID: 3353347561271081369}
-  - component: {fileID: 3649696551857543459}
-  - component: {fileID: 8541581347220193050}
-  - component: {fileID: 1003130745897224775}
-  - component: {fileID: 2268826071061058787}
+  - component: {fileID: 5750652862467463198}
+  - component: {fileID: -2694628956180416219}
+  - component: {fileID: -236001468490179821}
+  - component: {fileID: 1321994652419520365}
+  - component: {fileID: -8950871968083222800}
+  - component: {fileID: 843459198378449649}
   m_Layer: 0
   m_Name: Player 2
   m_TagString: Player
@@ -182,7 +182,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0, y: 0}
+  m_Offset: {x: 0.002889812, y: -0.0053831935}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -192,8 +192,30 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.024, y: 1.536}
+  m_Size: {x: 0.62065566, y: 0.94384694}
   m_EdgeRadius: 0
+--- !u!95 &933206049589533852
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6573146675933129569}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7f2ab87c44f16db4e84f3e249fe74440, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &6707646910639587765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,18 +246,6 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &5750652862467463198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6573146675933129569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1db5088755330a14587891879055b6cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimationController
 --- !u!114 &2868942147434560974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,29 +310,19 @@ MonoBehaviour:
   damageLevel: 0
   fireRateLevel: 0
   projectileLevel: 0
---- !u!95 &933206049589533852
-Animator:
-  serializedVersion: 7
+--- !u!114 &5750652862467463198
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6573146675933129569}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7f2ab87c44f16db4e84f3e249fe74440, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3353347561271081369
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db5088755330a14587891879055b6cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimationController
+--- !u!114 &-2694628956180416219
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -339,17 +339,17 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2944516281596723662, guid: 341221572f30dab41983f82891199124, type: 3}
   baseDamage: 5
   baseProjectile: 1
-  baseFireRate: 1
-  damagePerGlobalLevel: 2
-  projectilePerGlobalLevel: 0.25
+  baseFireRate: 0.8
+  damagePerGlobalLevel: 20
+  projectilePerGlobalLevel: 1
   fireRatePerGlobalLevel: 0.1
   level2_DamageBonus: 5
-  level3_FireRateBonus: 0.5
+  level3_FireRateBonus: 0.3
   level4_ProjectileBonus: 1
   level5_DamageBonus: 10
   unlocked: 1
-  weaponLevel: 0
---- !u!114 &3649696551857543459
+  weaponLevel: 1
+--- !u!114 &-236001468490179821
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -362,21 +362,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BowWeapon
   playerStats: {fileID: 2200994539507705035}
-  firePoint: {fileID: 4764966402603326400}
+  firePoint: {fileID: 3936341816686498495, guid: 17cb853b92b0840449f368aef813527b, type: 3}
   bulletPrefab: {fileID: 2944516281596723662, guid: 97b1df5af6788f641a6c104ff0d0bbc1, type: 3}
   baseDamage: 5
   baseProjectile: 1
-  baseFireRate: 1
-  damagePerGlobalLevel: 2
-  projectilePerGlobalLevel: 0.25
-  fireRatePerGlobalLevel: 0.1
+  baseFireRate: 1.2
+  damagePerGlobalLevel: 20
+  projectilePerGlobalLevel: 1
+  fireRatePerGlobalLevel: 0.2
   level2_DamageBonus: 5
-  level3_FireRateBonus: 0.5
-  level4_ProjectileBonus: 1
+  level3_FireRateBonus: 0.3
+  level4_ProjectileBonus: 2
   level5_DamageBonus: 10
   unlocked: 0
   weaponLevel: 0
---- !u!114 &8541581347220193050
+--- !u!114 &1321994652419520365
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -391,46 +391,19 @@ MonoBehaviour:
   playerStats: {fileID: 2200994539507705035}
   firePoint: {fileID: 4764966402603326400}
   bulletPrefab: {fileID: 2944516281596723662, guid: 48be3a35ac7dba646813f0f132a02b60, type: 3}
-  baseDamage: 5
+  baseDamage: 20
   baseProjectile: 1
-  baseFireRate: 1
-  damagePerGlobalLevel: 2
-  projectilePerGlobalLevel: 0.25
+  baseFireRate: 0.3
+  damagePerGlobalLevel: 15
+  projectilePerGlobalLevel: 0.5
   fireRatePerGlobalLevel: 0.1
-  level2_DamageBonus: 5
-  level3_FireRateBonus: 0.5
+  level2_DamageBonus: 10
+  level3_FireRateBonus: 0.3
   level4_ProjectileBonus: 1
-  level5_DamageBonus: 10
+  level5_DamageBonus: 20
   unlocked: 0
   weaponLevel: 0
---- !u!114 &1003130745897224775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6573146675933129569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0661e0120288cc4bbd6d2a0a30c3740, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::KnifeWeapon
-  playerStats: {fileID: 2200994539507705035}
-  firePoint: {fileID: 4764966402603326400}
-  bulletPrefab: {fileID: 2944516281596723662, guid: ecb38499d407f6543abee28daba22f50, type: 3}
-  baseDamage: 5
-  baseProjectile: 1
-  baseFireRate: 1
-  damagePerGlobalLevel: 2
-  projectilePerGlobalLevel: 0.25
-  fireRatePerGlobalLevel: 0.1
-  level2_DamageBonus: 5
-  level3_FireRateBonus: 0.5
-  level4_ProjectileBonus: 1
-  level5_DamageBonus: 10
-  unlocked: 0
-  weaponLevel: 0
---- !u!114 &2268826071061058787
+--- !u!114 &-8950871968083222800
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -445,21 +418,48 @@ MonoBehaviour:
   playerStats: {fileID: 2200994539507705035}
   firePoint: {fileID: 4764966402603326400}
   bulletPrefab: {fileID: 2944516281596723662, guid: 7bad5c0bf003b0b469e378380631fdb7, type: 3}
-  baseDamage: 5
-  baseProjectile: 3
+  baseDamage: 10
+  baseProjectile: 2
   baseFireRate: 1
-  damagePerGlobalLevel: 2
-  projectilePerGlobalLevel: 0.25
-  fireRatePerGlobalLevel: 0.1
+  damagePerGlobalLevel: 20
+  projectilePerGlobalLevel: 1
+  fireRatePerGlobalLevel: 1
   level2_DamageBonus: 5
   level3_ProjectileBonus: 0.5
-  level4_ProjectileBonus: 1
+  level4_ProjectileBonus: 2
   level5_DamageBonus: 10
   unlocked: 0
   weaponLevel: 0
-  orbitRadius: 1.5
-  orbitSpeed: 180
+  orbitRadius: 2
+  orbitSpeed: 200
   orbitOffset: {x: 0, y: 0}
+--- !u!114 &843459198378449649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6573146675933129569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0661e0120288cc4bbd6d2a0a30c3740, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KnifeWeapon
+  playerStats: {fileID: 2200994539507705035}
+  firePoint: {fileID: 4764966402603326400}
+  bulletPrefab: {fileID: 2944516281596723662, guid: ecb38499d407f6543abee28daba22f50, type: 3}
+  baseDamage: 10
+  baseProjectile: 1
+  baseFireRate: 0.5
+  damagePerGlobalLevel: 20
+  projectilePerGlobalLevel: 0.5
+  fireRatePerGlobalLevel: 0.2
+  level2_DamageBonus: 5
+  level3_FireRateBonus: 0.3
+  level4_ProjectileBonus: 2
+  level5_DamageBonus: 10
+  unlocked: 0
+  weaponLevel: 0
 --- !u!1 &8277521097515083823
 GameObject:
   m_ObjectHideFlags: 0

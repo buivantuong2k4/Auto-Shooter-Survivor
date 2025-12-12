@@ -57,12 +57,15 @@ public class MainMenuController : MonoBehaviour
     // index = 0 (Tướng 1), index = 1 (Tướng 2), index = 2 (Tướng 3)
     public void OnClick_SelectCharacter(int index)
     {
-        // Lưu lại lựa chọn của người chơi
+        // Lưu lại lựa chọn của người chơi vào CharacterSelectionData
+        CharacterSelectionData.SelectedCharacterIndex = index;
+
+        // Lưu vào PlayerPrefs để lần sau mở lại
         PlayerPrefs.SetInt("SelectedCharacterID", index);
         PlayerPrefs.Save();
 
         Debug.Log("Đã chọn nhân vật số: " + index);
-        
+
         // Vào game luôn
         SceneManager.LoadScene(gameSceneName);
     }

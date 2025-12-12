@@ -6,7 +6,7 @@ public class PlayerStats : MonoBehaviour
     [Header("Health")]
     [SerializeField] private int baseMaxHP = 100;
     [SerializeField] private int hpPerLevel = 20;
-    [SerializeField] private int healthLevel = 0;
+    [SerializeField] private int healthLevel = 3;
 
     public int GetMaxHP() => baseMaxHP + healthLevel * hpPerLevel;
     public int GetHealthLevel() => healthLevel;

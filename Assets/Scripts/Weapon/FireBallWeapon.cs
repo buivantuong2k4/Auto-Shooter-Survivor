@@ -15,7 +15,7 @@ public class FireBallWeapon : MonoBehaviour
 
     [Header("Scale theo PLAYER STATS (global level)")]
     public float damagePerGlobalLevel = 2f;
-    public float projectilePerGlobalLevel = 0.25f;
+    public float projectilePerGlobalLevel = 1f;
     public float fireRatePerGlobalLevel = 0.1f;
 
     [Header("Tăng theo TỪNG CẤP (nhập trong Inspector)")]
@@ -79,7 +79,6 @@ public class FireBallWeapon : MonoBehaviour
     public void UnlockWeapon()
     {
         unlocked = true;
-        weaponLevel = 1;   // cấp 1: chỉ dùng base stats
     }
 
     public void UpgradeWeapon()
@@ -87,14 +86,14 @@ public class FireBallWeapon : MonoBehaviour
         // Tăng tối đa tới cấp 5
         if (weaponLevel < 5)
             weaponLevel++;
+        UnlockWeapon();
     }
 
     // ====== TÍNH CHỈ SỐ HIỆN TẠI ======
     int GetCurrentDamage()
     {
         float dmg =
-            baseDamage +
-            playerStats.GetDamageLevel() * damagePerGlobalLevel;
+            baseDamage * (100f + playerStats.GetDamageLevel() * damagePerGlobalLevel) / 100f;
 
         // Cấp 2: thêm dmg
         if (weaponLevel >= 2)
